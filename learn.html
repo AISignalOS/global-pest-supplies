@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pest Control Guides — Global Pest Supplies</title>
+  <meta name="description" content="Free pest control guides written by professionals. How to get rid of ants, cockroaches, rodents, termites, mosquitoes, bed bugs, and more — step by step.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+</head>
+<body>
+
+<script src="gps-shell.js"></script>
+
+<div class="page-hero">
+  <div class="container">
+    <div class="page-hero-breadcrumb"><a href="index.html">Home</a> / Learn</div>
+    <h1>Pest Control <span style="color:var(--blue-glow)">Guides</span></h1>
+    <p>Free, professional-grade guides written by licensed exterminators. No filler — just what actually works.</p>
+    <div class="page-hero-meta">
+      <div class="page-hero-stat"><strong>6</strong> Guides</div>
+      <div class="page-hero-stat"><strong>Free</strong> Always</div>
+      <div class="page-hero-stat"><strong>Pro-written</strong></div>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURED GUIDE -->
+<section class="section" style="padding-top:48px;">
+  <div class="container">
+    <div class="featured-guide">
+      <div class="featured-guide-visual">🐜</div>
+      <div class="featured-guide-body">
+        <span class="featured-guide-label">Featured Guide</span>
+        <h3>How to Get Rid of Ants for Good</h3>
+        <p>Why spraying actually makes ant infestations worse — and the bait-first method professionals use to eliminate the entire colony, including the queen.</p>
+        <a href="https://global-pest-supplies.myshopify.com/blogs/pest-control-guides/how-to-get-rid-of-ants" class="btn-primary" style="align-self:flex-start;">Read Guide →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FILTER TABS -->
+<section class="section" style="padding-top:16px;">
+  <div class="container">
+    <div class="guides-filter-tabs" id="guideTabs">
+      <button class="guide-tab active" data-filter="all" onclick="filterGuides('all', this)">All Guides</button>
+      <button class="guide-tab" data-filter="ants" onclick="filterGuides('ants', this)">🐜 Ants</button>
+      <button class="guide-tab" data-filter="cockroaches" onclick="filterGuides('cockroaches', this)">🪳 Cockroaches</button>
+      <button class="guide-tab" data-filter="rodents" onclick="filterGuides('rodents', this)">🐭 Rodents</button>
+      <button class="guide-tab" data-filter="termites" onclick="filterGuides('termites', this)">🪲 Termites</button>
+      <button class="guide-tab" data-filter="mosquitoes" onclick="filterGuides('mosquitoes', this)">🦟 Mosquitoes</button>
+      <button class="guide-tab" data-filter="bedbugs" onclick="filterGuides('bedbugs', this)">🛏️ Bed Bugs</button>
+    </div>
+
+    <div class="guides-grid" id="guidesGrid"></div>
+  </div>
+</section>
+
+<!-- QUICK TIPS -->
+<section class="section" style="background:var(--navy-mid);border-top:1px solid var(--border);">
+  <div class="container">
+    <h2 class="section-title" style="margin-bottom:32px;">Quick <span>Tips</span></h2>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
+      <div class="info-card">
+        <div class="info-card-bg"></div>
+        <h3>DIY vs. Professional</h3>
+        <p class="subtitle">When to call an exterminator</p>
+        <ul>
+          <li>Termite colony confirmed</li>
+          <li>Bed bug infestation across multiple rooms</li>
+          <li>Rodent infestation with structural entry</li>
+          <li>Repeated treatment failures (3+ cycles)</li>
+        </ul>
+        <a href="shop-by-pest.html" class="btn-outline-blue">Shop by Pest →</a>
+      </div>
+      <div class="info-card">
+        <div class="info-card-bg"></div>
+        <h3>Safety First</h3>
+        <p class="subtitle">Before every application</p>
+        <ul>
+          <li>Read the full product label</li>
+          <li>Wear gloves and eye protection</li>
+          <li>Remove food, dishes, and pet bowls</li>
+          <li>Keep children/pets away until dry</li>
+        </ul>
+        <a href="diy-kits.html" class="btn-outline-blue">Shop DIY Kits →</a>
+      </div>
+      <div class="info-card">
+        <div class="info-card-bg"></div>
+        <h3>Prevention Checklist</h3>
+        <p class="subtitle">Stop infestations before they start</p>
+        <ul>
+          <li>Seal cracks and entry points quarterly</li>
+          <li>Maintain a 6-inch bark/mulch gap at foundations</li>
+          <li>Fix leaky pipes — moisture attracts pests</li>
+          <li>Perimeter spray every 90 days</li>
+        </ul>
+        <a href="products.html" class="btn-outline-blue">Shop Products →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER CTA -->
+<section class="section" style="text-align:center;padding:64px 0;">
+  <div class="container">
+    <div style="max-width:520px;margin:0 auto;">
+      <div class="hero-tag" style="display:inline-flex;margin-bottom:16px;">📧 Stay Informed</div>
+      <h2 class="section-title" style="text-align:center;">Get Guides in Your Inbox</h2>
+      <p style="color:rgba(255,255,255,0.7);margin-bottom:28px;">New pest control guides, seasonal tips, and product updates — delivered free every month.</p>
+      <a href="newsletter.html" class="btn-primary">Subscribe Free →</a>
+    </div>
+  </div>
+</section>
+
+<script src="catalog.js"></script>
+<script src="shopify-storefront.js"></script>
+<script src="main.js"></script>
+<script>
+const ALL_GUIDES = [
+  { pest:'ants',        pestKey:'ants',        emoji:'🐜', tag:'Ants',        h:'how-to-get-rid-of-ants',         title:'How to Get Rid of Ants for Good',          blurb:'Why spraying makes it worse — and the bait-first method pros use to kill the whole colony including the queen.',  readTime:'8 min read' },
+  { pest:'mosquitoes',  pestKey:'mosquitoes',  emoji:'🦟', tag:'Mosquitoes',  h:'mosquito-control-yard',           title:'Control Mosquitoes in Your Yard',           blurb:'Hit adults and larvae at once for a bite-free yard all season long. Barrier sprays + Bti dunks explained.',        readTime:'6 min read' },
+  { pest:'rodents',     pestKey:'rodents',     emoji:'🐭', tag:'Rodents',     h:'rodent-control-for-restaurants',  title:'Rodent Control for Restaurants',            blurb:'A compliance-ready, inspection-proof program of stations, traps and exclusion for food service businesses.',       readTime:'10 min read' },
+  { pest:'termites',    pestKey:'termites',    emoji:'🪲', tag:'Termites',    h:'termite-prevention-guide',         title:'Termite Prevention for Homeowners',         blurb:'Spot the warning signs early and protect your home before structural damage occurs.',                             readTime:'9 min read' },
+  { pest:'cockroaches', pestKey:'cockroaches', emoji:'🪳', tag:'Cockroaches', h:'how-to-get-rid-of-cockroaches',   title:'Get Rid of Cockroaches for Good',           blurb:'The gel-bait-and-dust system that wipes out roaches and the next generation. Works on German and American species.', readTime:'7 min read' },
+  { pest:'bedbugs',     pestKey:'bedbugs',     emoji:'🛏️', tag:'Bed Bugs',   h:'bed-bug-treatment-guide',          title:'Get Rid of Bed Bugs Yourself',             blurb:'The disciplined multi-step plan that actually eliminates bed bugs at home without an exterminator.',              readTime:'12 min read' },
+];
+
+document.addEventListener('DOMContentLoaded', () => {
+  renderGuides('all');
+  const params = new URLSearchParams(location.search);
+  const pest = params.get('pest');
+  if (pest) {
+    const tab = document.querySelector(`[data-filter="${pest}"]`);
+    if (tab) { filterGuides(pest, tab); }
+  }
+});
+
+function renderGuides(filter) {
+  const grid = document.getElementById('guidesGrid');
+  if (!grid) return;
+  const guides = filter === 'all' ? ALL_GUIDES : ALL_GUIDES.filter(g => g.pestKey === filter);
+  const BLOG = 'https://global-pest-supplies.myshopify.com/blogs/pest-control-guides';
+  grid.innerHTML = guides.map(g => `
+    <a class="guide-card" href="${BLOG}/${g.h}">
+      <div class="guide-card-header">
+        <div class="guide-card-pest">${g.emoji}</div>
+        <span class="guide-card-tag">${g.tag}</span>
+      </div>
+      <div class="guide-card-body">
+        <h4>${g.title}</h4>
+        <p>${g.blurb}</p>
+        <div class="guide-read-more">
+          <span>${g.readTime}</span>
+          <span style="margin-left:auto;">Read guide →</span>
+        </div>
+      </div>
+    </a>`).join('');
+}
+
+function filterGuides(filter, btn) {
+  document.querySelectorAll('.guide-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  renderGuides(filter);
+  history.replaceState(null, '', filter === 'all' ? 'learn.html' : `?pest=${filter}`);
+}
+</script>
+</body>
+</html>

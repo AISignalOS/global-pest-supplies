@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="42%" r="75%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="60%" stop-color="#eef2f7"/>
+      <stop offset="100%" stop-color="#d8e0ea"/>
+    </radialGradient>
+    <linearGradient id="capG" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2b3a52"/><stop offset="50%" stop-color="#13233d"/><stop offset="100%" stop-color="#0a1628"/>
+    </linearGradient>
+    <linearGradient id="blueCap" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#4d8bff"/><stop offset="50%" stop-color="#1E6BFF"/><stop offset="100%" stop-color="#0d4fd6"/>
+    </linearGradient>
+    <linearGradient id="bodyL" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#cfd8e4"/><stop offset="18%" stop-color="#ffffff"/><stop offset="50%" stop-color="#f3f6fa"/><stop offset="82%" stop-color="#ffffff"/><stop offset="100%" stop-color="#c4cedd"/>
+    </linearGradient>
+    <linearGradient id="amber" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#a8741f"/><stop offset="20%" stop-color="#f0c97a"/><stop offset="50%" stop-color="#d9a23f"/><stop offset="82%" stop-color="#f0c97a"/><stop offset="100%" stop-color="#9c6a1a"/>
+    </linearGradient>
+    <linearGradient id="kraft" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#b8843f"/><stop offset="20%" stop-color="#e8c089"/><stop offset="50%" stop-color="#d2a05f"/><stop offset="82%" stop-color="#e8c089"/><stop offset="100%" stop-color="#ad7a36"/>
+    </linearGradient>
+    <linearGradient id="cardboard" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#cbb187"/><stop offset="15%" stop-color="#efe0c4"/><stop offset="50%" stop-color="#e2cda3"/><stop offset="85%" stop-color="#efe0c4"/><stop offset="100%" stop-color="#c4a87c"/>
+    </linearGradient>
+    <linearGradient id="redbody" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#7a1226"/><stop offset="20%" stop-color="#e23a55"/><stop offset="50%" stop-color="#b51e38"/><stop offset="82%" stop-color="#e23a55"/><stop offset="100%" stop-color="#6e1020"/>
+    </linearGradient>
+    <radialGradient id="hl" cx="35%" cy="22%" r="60%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.85"/><stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="14" stdDeviation="18" flood-color="#0a1628" flood-opacity="0.22"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <ellipse cx="600" cy="1000" rx="210" ry="48" fill="#0a1628" opacity="0.16"/>
+  
+    <rect x="540" y="190" width="120" height="55" rx="10" fill="url(#capG)"/>
+    <rect x="560" y="160" width="40" height="40" rx="6" fill="url(#capG)"/>
+    <rect x="555" y="245" width="90" height="30" rx="6" fill="#1b2c47"/>
+    <rect x="500" y="275" width="200" height="540" rx="26" fill="url(#bodyL)" stroke="#b9c4d4" stroke-width="2"/>
+    <rect x="500" y="275" width="70" height="540" rx="26" fill="url(#hl)"/>
+    <ellipse cx="600" cy="800" rx="100" ry="20" fill="#c4cedd" opacity="0.6"/>
+    
+  <g font-family="'Segoe UI',Arial,sans-serif">
+    <rect x="515" y="360" width="170" height="330" rx="10" fill="#ffffff" stroke="#B45309" stroke-width="2"/>
+    <rect x="515" y="360" width="170" height="6" rx="3" fill="#B45309"/>
+    <text x="600" y="390" text-anchor="middle" fill="#B45309" font-size="13" font-weight="700" letter-spacing="3">GLOBAL PEST SUPPLIES</text>
+    <text x="600" y="422" text-anchor="middle" fill="#0A1628" font-size="27" font-weight="800" letter-spacing="0.5">STRIKEJET</text>
+    <text x="600" y="444" text-anchor="middle" fill="#5A6B85" font-size="14" font-weight="600">Wasp &amp; Hornet Jet Spray</text>
+    <line x1="539" y1="460" x2="661" y2="460" stroke="#B45309" stroke-opacity="0.3" stroke-width="1"/>
+    <text x="600" y="482" text-anchor="middle" fill="#0A1628" font-size="14" font-weight="700">20 FT Reach</text>
+    <rect x="556" y="660" width="88" height="22" rx="11" fill="#B45309"/>
+    <text x="600" y="675" text-anchor="middle" fill="#fff" font-size="13" font-weight="800" letter-spacing="1">20 OZ</text>
+  </g>
+</svg>

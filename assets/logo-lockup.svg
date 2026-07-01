@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 200" width="760" height="200">
+  <defs>
+    <radialGradient id="globeGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#1a3a6e"/>
+      <stop offset="100%" stop-color="#0a1628"/>
+    </radialGradient>
+  </defs>
+  <!-- Icon -->
+  <g transform="translate(0,0)">
+    <circle cx="100" cy="100" r="80" fill="url(#globeGrad)" stroke="#1E6BFF" stroke-width="2"/>
+    <ellipse cx="100" cy="100" rx="80" ry="22" fill="none" stroke="#1E6BFF" stroke-width="1" opacity="0.5"/>
+    <line x1="20" y1="100" x2="180" y2="100" stroke="#1E6BFF" stroke-width="1" opacity="0.45"/>
+    <line x1="100" y1="20" x2="100" y2="180" stroke="#1E6BFF" stroke-width="1" opacity="0.45"/>
+    <ellipse cx="100" cy="100" rx="35" ry="80" fill="none" stroke="#1E6BFF" stroke-width="1" opacity="0.4"/>
+    <circle cx="100" cy="100" r="22" fill="none" stroke="#1E6BFF" stroke-width="2.5"/>
+    <line x1="78" y1="100" x2="90" y2="100" stroke="#1E6BFF" stroke-width="3"/>
+    <line x1="110" y1="100" x2="122" y2="100" stroke="#1E6BFF" stroke-width="3"/>
+    <line x1="100" y1="78" x2="100" y2="90" stroke="#1E6BFF" stroke-width="3"/>
+    <line x1="100" y1="110" x2="100" y2="122" stroke="#1E6BFF" stroke-width="3"/>
+    <circle cx="100" cy="100" r="5" fill="#1E6BFF"/>
+    <circle cx="52" cy="72" r="4" fill="#3A8AFF"/>
+    <circle cx="148" cy="66" r="4" fill="#3A8AFF"/>
+    <circle cx="132" cy="132" r="4" fill="#3A8AFF"/>
+    <line x1="52" y1="72" x2="148" y2="66" stroke="#3A8AFF" stroke-width="0.8" opacity="0.5"/>
+    <line x1="148" y1="66" x2="132" y2="132" stroke="#3A8AFF" stroke-width="0.8" opacity="0.5"/>
+  </g>
+  <!-- Wordmark -->
+  <text x="205" y="92" font-family="DejaVu Sans, Arial, sans-serif" font-size="58" font-weight="800" letter-spacing="2" fill="#0a1628">GLOBAL</text>
+  <text x="207" y="150" font-family="DejaVu Sans, Arial, sans-serif" font-size="34" font-weight="600" letter-spacing="7" fill="#1E6BFF">PEST SUPPLIES</text>
+</svg>

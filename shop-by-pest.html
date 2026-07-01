@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop by Pest — Global Pest Supplies</title>
+  <meta name="description" content="Find the exact pest control solution for your problem. Shop by pest type — ants, roaches, rodents, termites, mosquitoes, bed bugs, fleas, wasps, and more.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+</head>
+<body>
+
+<script src="gps-shell.js"></script>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="container">
+    <div class="page-hero-breadcrumb"><a href="index.html">Home</a> / Shop by Pest</div>
+    <h1>Shop by <span style="color:var(--blue-glow)">Pest</span></h1>
+    <p>Professional-grade solutions for every infestation. Select your pest and we'll show you exactly what works.</p>
+    <div class="page-hero-meta">
+      <div class="page-hero-stat"><strong>28</strong> Products</div>
+      <div class="page-hero-stat"><strong>8</strong> Pest Categories</div>
+      <div class="page-hero-stat"><strong>EPA</strong> Compliant</div>
+    </div>
+  </div>
+</div>
+
+<!-- PEST SELECTOR GRID -->
+<section class="section" style="padding-top:48px;padding-bottom:0;">
+  <div class="container">
+    <h2 class="section-title" style="margin-bottom:24px;">Select Your <span>Pest</span></h2>
+    <div class="pest-grid-large" id="pestCatGrid">
+      <!-- Rendered by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- PEST INFO + PRODUCTS -->
+<section class="section" id="pestSection" style="display:none;">
+  <div class="container">
+    <div class="pest-info-banner" id="pestInfoBanner"></div>
+    <div class="section-header" style="margin-bottom:24px;">
+      <h2 class="section-title" style="margin-bottom:0;">Products for <span id="pestTitleLabel">Ants</span></h2>
+      <a href="#" class="btn-outline-blue" id="pestShopAllBtn">Shop All →</a>
+    </div>
+    <div class="product-grid" id="pestGrid"></div>
+  </div>
+</section>
+
+<!-- FULL CATALOG TEASER -->
+<section class="section" style="padding-top:48px;background:var(--navy-mid);border-top:1px solid var(--border);">
+  <div class="container" style="text-align:center;">
+    <h2 class="section-title">Not sure what you need?</h2>
+    <p style="color:rgba(255,255,255,0.7);margin-bottom:32px;max-width:480px;margin-left:auto;margin-right:auto;">Use our Pest Finder to get a personalized recommendation in under 60 seconds.</p>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+      <a href="index.html#pest-finder" class="btn-primary">🔍 Use Pest Finder →</a>
+      <a href="products.html" class="btn-secondary">View All Products</a>
+    </div>
+  </div>
+</section>
+
+<script src="catalog.js"></script>
+<script src="shopify-storefront.js"></script>
+<script src="main.js"></script>
+<script>
+const PEST_DATA = {
+  ants:        { emoji:'🐜', label:'Ants',          tip:'Bait-first approach kills the entire colony, not just foragers.', tips:['Use gel bait','Apply perimeter spray','Station monitoring'] },
+  cockroaches: { emoji:'🪳', label:'Cockroaches',   tip:'Gel bait + dust is the professional 1-2 knockout for German roaches.', tips:['Gel bait in cracks','Dust voids','IGR breaks life cycle'] },
+  rodents:     { emoji:'🐭', label:'Rodents',       tip:'Multiple station types for complete control — snap traps, bait blocks, and glue boards.', tips:['Station bait blocks','Snap traps','Glue board monitoring'] },
+  termites:    { emoji:'🪲', label:'Termites',      tip:'Bait systems eliminate colonies; foam treatment handles structural galleries.', tips:['In-ground bait stations','Foam treatment','Annual monitoring'] },
+  mosquitoes:  { emoji:'🦟', label:'Mosquitoes',    tip:'Hit adults with a barrier spray and larvae with Bti dunks for season-long control.', tips:['Yard barrier spray','Larvicide dunks','IGR concentrate'] },
+  bedbugs:     { emoji:'🛏️', label:'Bed Bugs',      tip:'Multi-step approach — spray, dust, aerosol, and encasements for full elimination.', tips:['Ready-to-use spray','Void dust','Complete kit'] },
+  fleas:       { emoji:'🐾', label:'Fleas & Ticks', tip:'IGR is essential — breaks the life cycle to prevent re-infestation.', tips:['IGR concentrate','Flea spray','Granules for lawn'] },
+  wasps:       { emoji:'🐝', label:'Wasps & Spiders', tip:'Strike from 20 ft with a jet-stream spray; treat nests at dusk for best results.', tips:['20ft jet spray','Treat nests at dusk','Cypermethrin perimeter'] },
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+  renderPestCats();
+  const params = new URLSearchParams(location.search);
+  const initial = params.get('pest');
+  if (initial && PEST_DATA[initial]) selectPest(initial);
+});
+
+function renderPestCats() {
+  const grid = document.getElementById('pestCatGrid');
+  if (!grid) return;
+  grid.innerHTML = Object.entries(PEST_DATA).map(([key, d]) => {
+    const count = byPest(key).length;
+    return `<button class="pest-cat-card" data-pest="${key}" onclick="selectPest('${key}')">
+      <span class="pest-cat-icon">${d.emoji}</span>
+      <span>${d.label}</span>
+      <span class="pest-cat-count">${count} product${count !== 1 ? 's' : ''}</span>
+    </button>`;
+  }).join('');
+}
+
+function selectPest(pest) {
+  const d = PEST_DATA[pest];
+  if (!d) return;
+
+  document.querySelectorAll('.pest-cat-card').forEach(c => c.classList.toggle('active', c.dataset.pest === pest));
+
+  const banner = document.getElementById('pestInfoBanner');
+  if (banner) {
+    banner.innerHTML = `
+      <div class="pest-info-icon">${d.emoji}</div>
+      <div class="pest-info-body">
+        <h3>${d.label} Control</h3>
+        <p>${d.tip}</p>
+        <div class="pest-info-tips">
+          ${d.tips.map(t => `<span class="pest-info-tip">✓ ${t}</span>`).join('')}
+        </div>
+      </div>`;
+  }
+
+  const products = byPest(pest);
+  const grid = document.getElementById('pestGrid');
+  if (grid) grid.innerHTML = products.map(p => productCard(p)).join('');
+
+  const label = document.getElementById('pestTitleLabel');
+  if (label) label.textContent = d.label;
+
+  const allBtn = document.getElementById('pestShopAllBtn');
+  if (allBtn) allBtn.href = collectionUrl(pest);
+
+  const section = document.getElementById('pestSection');
+  if (section) {
+    section.style.display = 'block';
+    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  history.replaceState(null, '', `?pest=${pest}`);
+}
+</script>
+</body>
+</html>

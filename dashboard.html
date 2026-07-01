@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pro Dashboard — Global Pest Supplies</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Dashboard-specific styles */
+    body { overflow-x: hidden; }
+
+    .dash-layout {
+      display: flex;
+      min-height: 100vh;
+      padding-top: 0;
+    }
+
+    /* SIDEBAR */
+    .dash-sidebar {
+      width: 240px;
+      flex-shrink: 0;
+      background: #080f1d;
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      z-index: 100;
+      overflow-y: auto;
+    }
+
+    .dash-sidebar-logo {
+      padding: 22px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .dash-nav { padding: 12px 0; flex: 1; }
+
+    .dash-nav-section {
+      padding: 8px 20px 4px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+    }
+
+    .dash-nav-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 20px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.65);
+      cursor: pointer;
+      border-left: 2px solid transparent;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+    .dash-nav-item:hover {
+      color: var(--white);
+      background: rgba(255,255,255,0.05);
+    }
+    .dash-nav-item.active {
+      color: var(--white);
+      background: rgba(30,107,255,0.12);
+      border-left-color: var(--blue);
+    }
+    .dash-nav-item .nav-icon { font-size: 1rem; width: 20px; text-align: center; }
+    .nav-badge {
+      margin-left: auto;
+      background: var(--blue);
+      color: white;
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 10px;
+    }
+
+    .dash-sidebar-footer {
+      padding: 16px 20px;
+      border-top: 1px solid var(--border);
+    }
+    .dash-user {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .dash-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .dash-user-info { flex: 1; overflow: hidden; }
+    .dash-user-name { font-size: 0.85rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .dash-user-tier {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--yellow);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* MAIN CONTENT */
+    .dash-main {
+      flex: 1;
+      margin-left: 240px;
+      background: var(--navy);
+      min-height: 100vh;
+    }
+
+    .dash-topbar {
+      height: 64px;
+      background: rgba(8,15,29,0.95);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 32px;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .dash-topbar-left { display: flex; align-items: center; gap: 12px; }
+    .dash-topbar h1 { font-size: 1.1rem; font-weight: 700; }
+    .dash-topbar-breadcrumb { font-size: 0.8rem; color: var(--text-muted); }
+
+    .dash-topbar-right { display: flex; align-items: center; gap: 12px; }
+
+    .topbar-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--slate);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 7px 14px;
+      border-radius: 7px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .topbar-btn:hover { color: var(--white); border-color: var(--blue); }
+
+    .dash-content { padding: 32px; }
+
+    /* STATS GRID */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin-bottom: 32px;
+    }
+
+    .stat-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      position: relative;
+      overflow: hidden;
+    }
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--blue);
+      opacity: 0.7;
+    }
+    .stat-card.green::before { background: var(--green); }
+    .stat-card.yellow::before { background: var(--yellow); }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .stat-icon { font-size: 1rem; }
+
+    .stat-value {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .stat-change {
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+    .stat-change.up { color: #4CAF50; }
+    .stat-change.down { color: #f44336; }
+    .stat-change.neutral { color: var(--text-muted); }
+
+    /* GRID LAYOUT */
+    .dash-grid { display: grid; grid-template-columns: 1fr 360px; gap: 24px; }
+
+    /* TABLE */
+    .dash-table-wrapper {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    .dash-table-header {
+      padding: 18px 22px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .dash-table-header h3 { font-size: 0.95rem; font-weight: 700; }
+
+    table { width: 100%; border-collapse: collapse; }
+    thead th {
+      padding: 12px 18px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      text-align: left;
+      background: rgba(255,255,255,0.02);
+      border-bottom: 1px solid var(--border);
+    }
+    tbody td {
+      padding: 14px 18px;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.85);
+      border-bottom: 1px solid rgba(30,107,255,0.08);
+    }
+    tbody tr:last-child td { border-bottom: none; }
+    tbody tr:hover td { background: rgba(30,107,255,0.04); }
+
+    .order-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .status-shipped   { background: rgba(30,107,255,0.15); color: var(--blue-glow); }
+    .status-delivered { background: rgba(76,175,80,0.15);  color: #66BB6A; }
+    .status-processing{ background: rgba(246,176,0,0.15);  color: var(--yellow); }
+    .status-pending   { background: rgba(139,154,176,0.15);color: var(--text-muted); }
+
+    /* RIGHT COLUMN */
+    .dash-right { display: flex; flex-direction: column; gap: 22px; }
+
+    .quick-order-card,
+    .license-card,
+    .tier-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+    }
+
+    .card-title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .form-group { margin-bottom: 14px; }
+    .form-label {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .form-input,
+    .form-select {
+      width: 100%;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      color: var(--white);
+      padding: 9px 12px;
+      font-size: 0.85rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-input:focus,
+    .form-select:focus { border-color: var(--blue); }
+    .form-input::placeholder { color: var(--text-muted); }
+
+    .form-row { display: grid; grid-template-columns: 1fr 80px; gap: 10px; }
+
+    .license-status {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(76,175,80,0.1);
+      border: 1px solid rgba(76,175,80,0.3);
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 14px;
+    }
+    .license-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: #4CAF50;
+      flex-shrink: 0;
+      animation: blink 2s ease-in-out infinite;
+    }
+    .license-status p { font-size: 0.82rem; font-weight: 600; color: #66BB6A; }
+    .license-status span { font-size: 0.75rem; color: var(--text-muted); display: block; }
+
+    .license-detail {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      padding: 6px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .license-detail:last-child { border-bottom: none; }
+    .license-detail .ld-label { color: var(--text-muted); }
+    .license-detail .ld-value { color: var(--white); font-weight: 500; }
+
+    .tier-card { position: relative; overflow: hidden; }
+    .tier-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--blue), #7B2FFF);
+    }
+    .tier-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(246,176,0,0.15);
+      border: 1px solid rgba(246,176,0,0.3);
+      color: var(--yellow);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+    .tier-info { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 14px; }
+    .tier-perks {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+    .tier-perks li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.75);
+    }
+    .tier-perks li::before {
+      content: '✓';
+      color: var(--blue-glow);
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    /* QUICK ACTIONS BAR */
+    .quick-actions {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+    .quick-action-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 11px 18px;
+      color: rgba(255,255,255,0.8);
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .quick-action-btn:hover {
+      border-color: var(--blue);
+      color: var(--white);
+      background: rgba(30,107,255,0.08);
+    }
+    .quick-action-btn.primary {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: var(--white);
+    }
+    .quick-action-btn.primary:hover { background: var(--blue-glow); }
+
+    /* RESPONSIVE DASH */
+    @media (max-width: 1100px) {
+      .dash-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .dash-sidebar { transform: translateX(-100%); transition: transform 0.3s; }
+      .dash-sidebar.open { transform: translateX(0); }
+      .dash-main { margin-left: 0; }
+      .stats-grid { grid-template-columns: 1fr; }
+      .dash-content { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+<div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
+<div class="dash-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="dash-sidebar">
+    <div class="dash-sidebar-logo">
+      <svg width="32" height="32" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="100" cy="100" r="80" fill="#0d1e38" stroke="#1E6BFF" stroke-width="2"/>
+        <ellipse cx="100" cy="100" rx="80" ry="22" fill="none" stroke="#1E6BFF" stroke-width="1" opacity="0.5"/>
+        <line x1="20" y1="100" x2="180" y2="100" stroke="#1E6BFF" stroke-width="1" opacity="0.4"/>
+        <line x1="100" y1="20" x2="100" y2="180" stroke="#1E6BFF" stroke-width="1" opacity="0.4"/>
+        <circle cx="100" cy="100" r="18" fill="none" stroke="#1E6BFF" stroke-width="2"/>
+        <line x1="82" y1="100" x2="91" y2="100" stroke="#1E6BFF" stroke-width="2.5"/>
+        <line x1="109" y1="100" x2="118" y2="100" stroke="#1E6BFF" stroke-width="2.5"/>
+        <line x1="100" y1="82" x2="100" y2="91" stroke="#1E6BFF" stroke-width="2.5"/>
+        <line x1="100" y1="109" x2="100" y2="118" stroke="#1E6BFF" stroke-width="2.5"/>
+        <circle cx="100" cy="100" r="4" fill="#1E6BFF"/>
+      </svg>
+      <div class="nav-logo-text">
+        <span class="brand-main" style="font-size:0.9rem;">GLOBAL</span>
+        <span class="brand-sub">PEST SUPPLIES</span>
+      </div>
+    </div>
+
+    <nav class="dash-nav">
+      <div class="dash-nav-section">Main</div>
+      <a href="#" class="dash-nav-item active">
+        <span class="nav-icon">📊</span> Dashboard
+      </a>
+      <a href="#" class="dash-nav-item">
+        <span class="nav-icon">📦</span> Orders
+        <span class="nav-badge">3</span>
+      </a>
+      <a href="#" class="dash-nav-item">
+        <span class="nav-icon">🛒</span> Quick Order
+      </a>
+      <a href="#" class="dash-nav-item">
+        <span class="nav-icon">📋</span> Products
+      </a>
+
+      <div class="dash-nav-section">Account</div>
+      <a href="#" class="dash-nav-item">
+        <span class="nav-icon">🪪</span> License
+      </a>
+      <a href="#" class="dash-nav-item">
+        <span class="nav-icon">💳</span> Billing
+      </a>
+      <a href="#" class="dash-nav-item">
+        <span class="nav-icon">👥</span> Team
+      </a>
+
+      <div class="dash-nav-section">Support</div>
+      <a href="#" class="dash-nav-item">
+        <span class="nav-icon">💬</span> Support
+      </a>
+      <a href="index.html" class="dash-nav-item">
+        <span class="nav-icon">🌐</span> Back to Store
+      </a>
+    </nav>
+
+    <div class="dash-sidebar-footer">
+      <div class="dash-user">
+        <div class="dash-avatar">JD</div>
+        <div class="dash-user-info">
+          <div class="dash-user-name">John's Pest Co.</div>
+          <div class="dash-user-tier">⭐ Pro Elite</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="dash-main">
+
+    <!-- TOP BAR -->
+    <div class="dash-topbar">
+      <div class="dash-topbar-left">
+        <div>
+          <h1>Pro Dashboard</h1>
+          <div class="dash-topbar-breadcrumb">Welcome back, John 👋</div>
+        </div>
+      </div>
+      <div class="dash-topbar-right">
+        <button class="topbar-btn">🔔 Alerts <span class="nav-badge" style="background:var(--yellow);color:#000;">2</span></button>
+        <a href="index.html" class="btn-primary" style="padding:8px 16px;font-size:0.82rem;">+ New Order</a>
+      </div>
+    </div>
+
+    <div class="dash-content">
+
+      <!-- QUICK ACTIONS -->
+      <div class="quick-actions">
+        <button class="quick-action-btn primary">📦 Place Bulk Order</button>
+        <button class="quick-action-btn">📄 Download Invoice</button>
+        <button class="quick-action-btn">🔍 Track Shipment</button>
+        <button class="quick-action-btn">📊 Usage Report</button>
+        <button class="quick-action-btn">💬 Contact Rep</button>
+      </div>
+
+      <!-- STATS -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-label">
+            Monthly Spend
+            <span class="stat-icon">💰</span>
+          </div>
+          <div class="stat-value">$4,280</div>
+          <div class="stat-change up">↑ 12% vs last month</div>
+        </div>
+        <div class="stat-card green">
+          <div class="stat-label">
+            Orders This Month
+            <span class="stat-icon">📦</span>
+          </div>
+          <div class="stat-value">18</div>
+          <div class="stat-change up">↑ 3 more than last month</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">
+            License Status
+            <span class="stat-icon">🪪</span>
+          </div>
+          <div class="stat-value" style="font-size:1.2rem;color:#66BB6A;">✅ Verified</div>
+          <div class="stat-change neutral">Expires Dec 2026</div>
+        </div>
+        <div class="stat-card yellow">
+          <div class="stat-label">
+            Savings This Month
+            <span class="stat-icon">🎯</span>
+          </div>
+          <div class="stat-value">$890</div>
+          <div class="stat-change up">↑ vs retail pricing</div>
+        </div>
+      </div>
+
+      <!-- MAIN GRID -->
+      <div class="dash-grid">
+
+        <!-- Left: Orders Table -->
+        <div>
+          <div class="dash-table-wrapper">
+            <div class="dash-table-header">
+              <h3>📦 Recent Orders</h3>
+              <button class="topbar-btn">View All →</button>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Order #</th>
+                  <th>Product</th>
+                  <th>Qty</th>
+                  <th>Total</th>
+                  <th>Date</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="color:var(--blue-glow);font-weight:600;">#GPS-4821</td>
+                  <td>Pro Rodent Control Kit</td>
+                  <td>5×</td>
+                  <td>$645</td>
+                  <td>Mar 11, 2026</td>
+                  <td><span class="order-status status-shipped">🚚 Shipped</span></td>
+                </tr>
+                <tr>
+                  <td style="color:var(--blue-glow);font-weight:600;">#GPS-4820</td>
+                  <td>Bait Station Bulk Pack (20)</td>
+                  <td>2×</td>
+                  <td>$178</td>
+                  <td>Mar 9, 2026</td>
+                  <td><span class="order-status status-delivered">✅ Delivered</span></td>
+                </tr>
+                <tr>
+                  <td style="color:var(--blue-glow);font-weight:600;">#GPS-4815</td>
+                  <td>Pro Liquid Termiticide</td>
+                  <td>8×</td>
+                  <td>$712</td>
+                  <td>Mar 6, 2026</td>
+                  <td><span class="order-status status-delivered">✅ Delivered</span></td>
+                </tr>
+                <tr>
+                  <td style="color:var(--blue-glow);font-weight:600;">#GPS-4809</td>
+                  <td>Electronic Rat Trap</td>
+                  <td>12×</td>
+                  <td>$624</td>
+                  <td>Mar 3, 2026</td>
+                  <td><span class="order-status status-delivered">✅ Delivered</span></td>
+                </tr>
+                <tr>
+                  <td style="color:var(--blue-glow);font-weight:600;">#GPS-4823</td>
+                  <td>Pro Cockroach System</td>
+                  <td>3×</td>
+                  <td>$294</td>
+                  <td>Mar 12, 2026</td>
+                  <td><span class="order-status status-processing">⏳ Processing</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Usage Chart (CSS bar chart) -->
+          <div class="dash-table-wrapper" style="margin-top:24px;">
+            <div class="dash-table-header">
+              <h3>📈 Monthly Spend — Last 6 Months</h3>
+            </div>
+            <div style="padding:22px;">
+              <div style="display:flex;align-items:flex-end;gap:12px;height:120px;">
+                <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;">
+                  <div style="background:var(--blue);opacity:0.5;width:100%;height:52px;border-radius:4px 4px 0 0;"></div>
+                  <span style="font-size:0.7rem;color:var(--text-muted);">Oct</span>
+                </div>
+                <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;">
+                  <div style="background:var(--blue);opacity:0.55;width:100%;height:68px;border-radius:4px 4px 0 0;"></div>
+                  <span style="font-size:0.7rem;color:var(--text-muted);">Nov</span>
+                </div>
+                <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;">
+                  <div style="background:var(--blue);opacity:0.65;width:100%;height:78px;border-radius:4px 4px 0 0;"></div>
+                  <span style="font-size:0.7rem;color:var(--text-muted);">Dec</span>
+                </div>
+                <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;">
+                  <div style="background:var(--blue);opacity:0.55;width:100%;height:58px;border-radius:4px 4px 0 0;"></div>
+                  <span style="font-size:0.7rem;color:var(--text-muted);">Jan</span>
+                </div>
+                <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;">
+                  <div style="background:var(--blue);opacity:0.7;width:100%;height:88px;border-radius:4px 4px 0 0;"></div>
+                  <span style="font-size:0.7rem;color:var(--text-muted);">Feb</span>
+                </div>
+                <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;">
+                  <div style="background:var(--blue);width:100%;height:105px;border-radius:4px 4px 0 0;box-shadow:0 0 12px rgba(30,107,255,0.4);"></div>
+                  <span style="font-size:0.7rem;color:var(--white);font-weight:600;">Mar</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column -->
+        <div class="dash-right">
+
+          <!-- Quick Order Form -->
+          <div class="quick-order-card">
+            <div class="card-title">⚡ Quick Order</div>
+            <div class="form-group">
+              <label class="form-label">Search Product</label>
+              <input type="text" class="form-input" placeholder="e.g. Rodent Bait Station...">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Category</label>
+              <select class="form-select">
+                <option value="">All Categories</option>
+                <option>Rodent Control</option>
+                <option>Insecticides</option>
+                <option>Termite Control</option>
+                <option>Mosquito Control</option>
+                <option>Bed Bug Control</option>
+                <option>Equipment</option>
+              </select>
+            </div>
+            <div class="form-row form-group">
+              <div>
+                <label class="form-label">Product</label>
+                <select class="form-select">
+                  <option>Pro Rodent Control Kit</option>
+                  <option>Bait Stations (Bulk 20)</option>
+                  <option>Pro Liquid Termiticide</option>
+                  <option>Electronic Rat Trap</option>
+                  <option>Mosquito Pro Kit</option>
+                </select>
+              </div>
+              <div>
+                <label class="form-label">Qty</label>
+                <input type="number" class="form-input" value="5" min="1">
+              </div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-top:1px solid var(--border);margin-bottom:14px;">
+              <span style="font-size:0.82rem;color:var(--text-muted);">Wholesale price:</span>
+              <span style="font-weight:700;color:var(--blue-glow);">$645 (5× $129)</span>
+            </div>
+            <button class="btn-primary" style="width:100%;justify-content:center;">Place Order →</button>
+          </div>
+
+          <!-- License Status -->
+          <div class="license-card">
+            <div class="card-title">🪪 License Status</div>
+            <div class="license-status">
+              <div class="license-dot"></div>
+              <div>
+                <p>License Verified</p>
+                <span>Full product access enabled</span>
+              </div>
+            </div>
+            <div class="license-detail">
+              <span class="ld-label">License #</span>
+              <span class="ld-value">PCT-2024-FL-8821</span>
+            </div>
+            <div class="license-detail">
+              <span class="ld-label">State</span>
+              <span class="ld-value">Florida</span>
+            </div>
+            <div class="license-detail">
+              <span class="ld-label">Type</span>
+              <span class="ld-value">General Pest Control</span>
+            </div>
+            <div class="license-detail">
+              <span class="ld-label">Expires</span>
+              <span class="ld-value" style="color:#66BB6A;">Dec 31, 2026</span>
+            </div>
+            <button class="btn-outline-blue" style="width:100%;justify-content:center;margin-top:14px;">Update License →</button>
+          </div>
+
+          <!-- Tier Info -->
+          <div class="tier-card">
+            <div class="tier-badge">⭐ Pro Elite Plan</div>
+            <div class="tier-info">$79/month · Active since Jan 2025</div>
+            <ul class="tier-perks">
+              <li>Wholesale pricing (up to 40% off)</li>
+              <li>Restricted pesticide access</li>
+              <li>Bulk order discounts</li>
+              <li>Priority shipping</li>
+              <li>Dedicated account manager</li>
+              <li>API ordering integration</li>
+            </ul>
+            <button class="topbar-btn" style="width:100%;justify-content:center;font-size:0.82rem;">Manage Subscription →</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="main.js"></script>
+</body>
+</html>

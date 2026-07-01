@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart & Checkout — Global Pest Supplies</title>
+  <meta name="description" content="Review your cart and proceed to secure checkout. Free shipping on orders over $75. Use code WELCOME10 for 10% off.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+</head>
+<body>
+
+<script src="gps-shell.js"></script>
+
+<div class="page-hero" style="padding:80px 0 40px;">
+  <div class="container">
+    <div class="page-hero-breadcrumb"><a href="index.html">Home</a> / Cart</div>
+    <h1>Your <span style="color:var(--blue-glow)">Cart</span></h1>
+  </div>
+</div>
+
+<section style="padding:40px 0 80px;">
+  <div class="container">
+    <div class="checkout-layout">
+
+      <!-- LEFT: Cart Items + Shipping Form -->
+      <div>
+
+        <!-- Cart Items -->
+        <div class="checkout-panel" style="margin-bottom:24px;">
+          <h2><span class="checkout-step-badge">1</span>Cart Items</h2>
+          <div id="checkoutCartItems">
+            <!-- Populated by JS -->
+          </div>
+          <div id="cartEmptyMsg" class="cart-empty-state" style="display:none;">
+            <div class="empty-icon">🛒</div>
+            <p>Your cart is empty.</p>
+            <a href="products.html" class="btn-primary">Shop Products →</a>
+          </div>
+        </div>
+
+        <!-- Shipping Info -->
+        <div class="checkout-panel" style="margin-bottom:24px;">
+          <h2><span class="checkout-step-badge">2</span>Shipping Information</h2>
+          <div id="complianceWarning" class="compliance-warning" style="display:none;"></div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">First Name</label>
+              <input type="text" class="form-control" placeholder="Jane" autocomplete="given-name">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Last Name</label>
+              <input type="text" class="form-control" placeholder="Smith" autocomplete="family-name">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email Address</label>
+            <input type="email" class="form-control" placeholder="jane@example.com" autocomplete="email">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Address</label>
+            <input type="text" class="form-control" placeholder="123 Main Street" autocomplete="street-address">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">City</label>
+              <input type="text" class="form-control" placeholder="Austin" autocomplete="address-level2">
+            </div>
+            <div class="form-group">
+              <label class="form-label">State</label>
+              <select class="form-control sort-select" id="shipState" style="height:auto;padding:12px 16px;" autocomplete="address-level1" onchange="checkCompliance()">
+                <option value="">Select state…</option>
+                <option>AL</option><option>AK</option><option>AZ</option><option>AR</option><option>CA</option>
+                <option>CO</option><option>CT</option><option>DE</option><option>FL</option><option>GA</option>
+                <option>HI</option><option>ID</option><option>IL</option><option>IN</option><option>IA</option>
+                <option>KS</option><option>KY</option><option>LA</option><option>ME</option><option>MD</option>
+                <option>MA</option><option>MI</option><option>MN</option><option>MS</option><option>MO</option>
+                <option>MT</option><option>NE</option><option>NV</option><option>NH</option><option>NJ</option>
+                <option>NM</option><option>NY</option><option>NC</option><option>ND</option><option>OH</option>
+                <option>OK</option><option>OR</option><option>PA</option><option>RI</option><option>SC</option>
+                <option>SD</option><option>TN</option><option selected>TX</option><option>UT</option><option>VT</option>
+                <option>VA</option><option>WA</option><option>WV</option><option>WI</option><option>WY</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">ZIP Code</label>
+              <input type="text" class="form-control" placeholder="78701" maxlength="5" autocomplete="postal-code">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Shipping Method</label>
+            <div style="display:flex;flex-direction:column;gap:10px;margin-top:4px;">
+              <label style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border:1.5px solid var(--blue);border-radius:8px;cursor:pointer;background:rgba(30,107,255,0.08);">
+                <span style="display:flex;align-items:center;gap:10px;font-size:0.875rem;"><input type="radio" name="shipping" value="standard" checked style="accent-color:var(--blue);"> Standard Shipping (3–5 days)</span>
+                <span style="font-size:0.875rem;color:var(--blue-glow);font-weight:600;" id="stdShipCost">Free</span>
+              </label>
+              <label style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border:1.5px solid var(--border);border-radius:8px;cursor:pointer;">
+                <span style="display:flex;align-items:center;gap:10px;font-size:0.875rem;"><input type="radio" name="shipping" value="express" style="accent-color:var(--blue);"> Express Shipping (1–2 days)</span>
+                <span style="font-size:0.875rem;color:var(--white);font-weight:600;">$12.99</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Payment (Shopify handles real payment) -->
+        <div class="checkout-panel">
+          <h2><span class="checkout-step-badge">3</span>Payment</h2>
+          <div style="background:rgba(30,107,255,0.08);border:1px solid rgba(30,107,255,0.2);border-radius:8px;padding:16px 20px;margin-bottom:20px;display:flex;align-items:center;gap:14px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="color:var(--blue-glow);flex-shrink:0;">
+              <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/>
+            </svg>
+            <div>
+              <div style="font-size:0.875rem;font-weight:600;margin-bottom:2px;">Secure Checkout via Shopify</div>
+              <div style="font-size:0.8rem;color:var(--text-muted);">You'll be securely redirected to Shopify to enter payment details. We support all major cards, PayPal, Apple Pay, and Google Pay.</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;">
+            <div style="background:var(--slate);border:1px solid var(--border);border-radius:6px;padding:6px 14px;font-size:0.78rem;font-weight:600;">💳 Visa</div>
+            <div style="background:var(--slate);border:1px solid var(--border);border-radius:6px;padding:6px 14px;font-size:0.78rem;font-weight:600;">💳 Mastercard</div>
+            <div style="background:var(--slate);border:1px solid var(--border);border-radius:6px;padding:6px 14px;font-size:0.78rem;font-weight:600;">💳 Amex</div>
+            <div style="background:var(--slate);border:1px solid var(--border);border-radius:6px;padding:6px 14px;font-size:0.78rem;font-weight:600;">🅿 PayPal</div>
+            <div style="background:var(--slate);border:1px solid var(--border);border-radius:6px;padding:6px 14px;font-size:0.78rem;font-weight:600;"> Apple Pay</div>
+          </div>
+          <button class="btn-primary btn-full js-checkout-btn" style="font-size:1.05rem;padding:16px;" onclick="proceedToCheckout()">
+            Proceed to Secure Checkout →
+          </button>
+          <div class="security-badges">
+            <div class="security-badge">🔒 SSL Encrypted</div>
+            <div class="security-badge">🛡️ Shopify Secure</div>
+            <div class="security-badge">🔄 Easy Returns</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT: Order Summary -->
+      <div>
+        <div class="checkout-panel" style="position:sticky;top:120px;">
+          <h2>Order Summary</h2>
+
+          <!-- Cart Summary Lines -->
+          <div class="order-summary-rows" id="orderSummaryLines">
+            <div style="color:var(--text-muted);font-size:0.875rem;padding:12px 0;">Your cart is empty — add products to see the summary.</div>
+          </div>
+
+          <!-- Coupon Code -->
+          <div>
+            <div class="coupon-badge" id="couponBadge">
+              🏷️ Code <strong>WELCOME10</strong> applied — 10% off
+            </div>
+            <div class="coupon-row">
+              <input type="text" class="form-control" id="couponInput" placeholder="Discount code" value="WELCOME10">
+              <button class="btn-apply" onclick="applyCoupon()">Apply</button>
+            </div>
+          </div>
+
+          <div class="order-summary-rows" id="orderTotals">
+            <div class="order-row"><span>Subtotal</span><span id="summarySubtotal">$0.00</span></div>
+            <div class="order-row"><span>Shipping</span><span id="summaryShipping">Free</span></div>
+            <div class="order-row"><span class="discount">Discount (WELCOME10)</span><span class="discount" id="summaryDiscount">-$0.00</span></div>
+            <div class="order-row total"><span>Total</span><span id="summaryTotal">$0.00</span></div>
+          </div>
+
+          <button class="btn-primary btn-full js-checkout-btn" style="margin-top:20px;" onclick="proceedToCheckout()">
+            Checkout Securely →
+          </button>
+
+          <div style="margin-top:16px;display:flex;flex-direction:column;gap:8px;">
+            <div style="display:flex;align-items:center;gap:8px;font-size:0.8rem;color:var(--text-muted);">
+              🚚 Free shipping on orders over $75
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:0.8rem;color:var(--text-muted);">
+              🔄 30-day hassle-free returns
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:0.8rem;color:var(--text-muted);">
+              📦 Same-day dispatch before 2PM EST
+            </div>
+          </div>
+
+          <!-- Recommended Products -->
+          <div style="margin-top:24px;padding-top:20px;border-top:1px solid var(--border);">
+            <div style="font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);margin-bottom:14px;">Frequently Bought Together</div>
+            <div id="upsellProducts"></div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script src="catalog.js"></script>
+<script src="shopify-storefront.js"></script>
+<script src="main.js"></script>
+<script>
+let cartItems = [];
+let couponApplied = false;
+
+document.addEventListener('DOMContentLoaded', () => {
+  loadCart();
+  renderUpsells();
+  updateShippingRadios();
+});
+
+function loadCart() {
+  /* Try to read from Shopify cart ID stored in localStorage by shopify-storefront.js */
+  const cartJson = localStorage.getItem('gps_checkout_preview');
+  if (cartJson) {
+    try { cartItems = JSON.parse(cartJson); } catch(e) { cartItems = []; }
+  }
+
+  /* Fallback: show a sample cart so the page is never blank during design review */
+  if (!cartItems.length) {
+    cartItems = [
+      { ...byHandle('gps-broad-spectrum-concentrate-79'), qty: 1 },
+      { ...byHandle('gps-ant-kit'), qty: 1 },
+    ].filter(Boolean);
+  }
+
+  renderCheckoutCart();
+  renderSummary();
+}
+
+function renderCheckoutCart() {
+  const container = document.getElementById('checkoutCartItems');
+  const emptyMsg  = document.getElementById('cartEmptyMsg');
+  if (!container) return;
+
+  if (!cartItems.length) {
+    container.style.display = 'none';
+    emptyMsg.style.display = 'block';
+    return;
+  }
+
+  emptyMsg.style.display = 'none';
+  container.innerHTML = cartItems.map((p, i) => `
+    <div class="cart-review-line">
+      <div class="cart-review-img">
+        <img src="${p.img}" alt="${p.name}" width="64" height="64">
+      </div>
+      <div class="cart-review-info">
+        <div class="cart-review-name">${p.name}</div>
+        <div class="cart-review-unit">$${p.price.toFixed(2)} each · <span class="pcard-tier" style="font-size:0.68rem;">${p.tier}</span></div>
+        <div class="cart-review-qty">
+          <button class="qty-btn" onclick="changeCheckoutQty(${i}, ${p.qty - 1})">−</button>
+          <span class="qty-num">${p.qty}</span>
+          <button class="qty-btn" onclick="changeCheckoutQty(${i}, ${p.qty + 1})">+</button>
+          <button class="cart-remove-btn" onclick="removeCheckoutItem(${i})">Remove</button>
+        </div>
+      </div>
+      <div class="cart-review-price">$${(p.price * p.qty).toFixed(2)}</div>
+    </div>`).join('');
+}
+
+function changeCheckoutQty(idx, qty) {
+  if (qty < 1) { removeCheckoutItem(idx); return; }
+  cartItems[idx].qty = qty;
+  renderCheckoutCart();
+  renderSummary();
+}
+
+function removeCheckoutItem(idx) {
+  cartItems.splice(idx, 1);
+  renderCheckoutCart();
+  renderSummary();
+}
+
+const RESTRICTED_SHIP_STATES = ['NY', 'CA'];
+
+function checkCompliance() {
+  const stateSel = document.getElementById('shipState');
+  const state = stateSel ? stateSel.value : '';
+  const banner = document.getElementById('complianceWarning');
+  const checkoutBtns = document.querySelectorAll('.js-checkout-btn');
+  if (!banner) return;
+
+  const blocked = state
+    ? cartItems.filter(p => p.restrictedStates && p.restrictedStates.includes(state))
+    : [];
+
+  if (blocked.length) {
+    banner.style.display = 'flex';
+    banner.innerHTML = `⚠️ <span>Shipping restricted: <strong>${blocked.map(p => p.name).join(', ')}</strong> — active ingredient prohibited in ${state}. Remove the item or ship to a different state to continue.</span>`;
+    checkoutBtns.forEach(b => { b.disabled = true; b.classList.add('btn-disabled'); });
+  } else {
+    banner.style.display = 'none';
+    checkoutBtns.forEach(b => { b.disabled = false; b.classList.remove('btn-disabled'); });
+  }
+}
+
+function renderSummary() {
+  checkCompliance();
+  const subtotal = cartItems.reduce((s, p) => s + p.price * p.qty, 0);
+  const shipping = subtotal >= 75 ? 0 : 7.99;
+  const discount = couponApplied ? subtotal * 0.10 : 0;
+  const total    = subtotal + shipping - discount;
+
+  const fmt = n => '$' + n.toFixed(2);
+
+  document.getElementById('summarySubtotal').textContent = fmt(subtotal);
+  document.getElementById('summaryShipping').textContent = shipping === 0 ? 'Free' : fmt(shipping);
+  document.getElementById('summaryDiscount').textContent = '-' + fmt(discount);
+  document.getElementById('summaryTotal').textContent = fmt(Math.max(0, total));
+  document.getElementById('stdShipCost').textContent = shipping === 0 ? 'Free' : fmt(shipping);
+
+  const lines = document.getElementById('orderSummaryLines');
+  if (lines && cartItems.length) {
+    lines.innerHTML = cartItems.map(p => `
+      <div class="order-row">
+        <span style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${p.name} × ${p.qty}</span>
+        <span>$${(p.price * p.qty).toFixed(2)}</span>
+      </div>`).join('');
+  }
+}
+
+function applyCoupon() {
+  const code = document.getElementById('couponInput').value.trim().toUpperCase();
+  const badge = document.getElementById('couponBadge');
+  if (code === 'WELCOME10') {
+    couponApplied = true;
+    badge.classList.add('visible');
+    badge.innerHTML = '🏷️ Code <strong>WELCOME10</strong> applied — 10% off';
+    renderSummary();
+  } else if (code) {
+    badge.classList.add('visible');
+    badge.style.color = '#f87171';
+    badge.style.background = 'rgba(248,113,113,0.1)';
+    badge.style.borderColor = 'rgba(248,113,113,0.3)';
+    badge.innerHTML = '✗ Invalid discount code';
+  }
+}
+
+function updateShippingRadios() {
+  document.querySelectorAll('input[name="shipping"]').forEach(radio => {
+    radio.addEventListener('change', () => renderSummary());
+  });
+}
+
+function renderUpsells() {
+  const container = document.getElementById('upsellProducts');
+  if (!container) return;
+  const upsells = ['gps-pump-sprayer-1gal','gps-hand-duster','gps-insecticide-dust'].map(h => byHandle(h)).filter(Boolean);
+  container.innerHTML = upsells.map(p => `
+    <div style="display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.05);">
+      <div style="width:48px;height:48px;background:linear-gradient(135deg,#f0f4f8,#dde4ed);border-radius:6px;overflow:hidden;flex-shrink:0;">
+        <img src="${p.img}" alt="${p.name}" width="48" height="48" style="object-fit:contain;">
+      </div>
+      <div style="flex:1;min-width:0;">
+        <div style="font-size:0.8rem;font-weight:600;line-height:1.3;margin-bottom:2px;">${p.name}</div>
+        <div style="font-size:0.78rem;color:var(--blue-glow);font-weight:700;">$${p.price.toFixed(2)}</div>
+      </div>
+      <button class="btn-shop" style="font-size:0.72rem;padding:5px 10px;" onclick="addToCart('${p.v}', this)">+ Add</button>
+    </div>`).join('');
+}
+
+function proceedToCheckout() {
+  const state = document.getElementById('shipState')?.value;
+  if (state && cartItems.some(p => p.restrictedStates && p.restrictedStates.includes(state))) return;
+
+  /* If Shopify cart exists, go to its checkout URL */
+  const cartId = localStorage.getItem('gps_cart_id');
+  if (cartId) {
+    /* Cart URL is managed by shopify-storefront.js; redirect to Shopify */
+    window.location.href = 'https://global-pest-supplies.myshopify.com/cart';
+    return;
+  }
+
+  /* Build a Shopify cart permalink from current items */
+  if (cartItems.length) {
+    const lineItems = cartItems.map(p => `${p.v}:${p.qty}`).join(',');
+    const couponParam = couponApplied ? '&discount=WELCOME10' : '';
+    window.location.href = `https://global-pest-supplies.myshopify.com/cart/${lineItems}?checkout${couponParam}`;
+  } else {
+    window.location.href = 'https://global-pest-supplies.myshopify.com/cart';
+  }
+}
+
+/* Auto-apply coupon from URL param */
+const urlParams = new URLSearchParams(location.search);
+if (urlParams.get('discount') === 'WELCOME10') {
+  document.getElementById('couponInput').value = 'WELCOME10';
+  applyCoupon();
+}
+</script>
+</body>
+</html>

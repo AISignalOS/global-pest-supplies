@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Global Pest Supplies — Professional Pest Control Solutions Worldwide</title>
+  <meta name="description" content="DIY pest control for homeowners. Professional-grade supplies for licensed exterminators. Shop by pest, find the right solution.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+</head>
+<body>
+
+<!-- ============================================
+     NAVIGATION
+     ============================================ -->
+<div class="scroll-progress" id="scrollProgress"></div>
+<div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
+<div class="announce-bar">
+  Free shipping on orders $75+ &nbsp;·&nbsp; Use code <strong>WELCOME10</strong> for 10% off your first order &nbsp;·&nbsp; <a href="newsletter.html" style="color:#fff;text-decoration:underline;">Subscribe for guides →</a>
+</div>
+
+<nav class="nav" role="navigation" aria-label="Main">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo" aria-label="Global Pest Supplies Home">
+      <svg width="36" height="36" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="ng" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#1a3a6e"/>
+            <stop offset="100%" stop-color="#0a1628"/>
+          </radialGradient>
+        </defs>
+        <circle cx="100" cy="100" r="80" fill="url(#ng)" stroke="#1E6BFF" stroke-width="2"/>
+        <ellipse cx="100" cy="100" rx="80" ry="22" fill="none" stroke="#1E6BFF" stroke-width="1" opacity="0.5"/>
+        <line x1="20" y1="100" x2="180" y2="100" stroke="#1E6BFF" stroke-width="1" opacity="0.4"/>
+        <line x1="100" y1="20" x2="100" y2="180" stroke="#1E6BFF" stroke-width="1" opacity="0.4"/>
+        <ellipse cx="100" cy="100" rx="35" ry="80" fill="none" stroke="#1E6BFF" stroke-width="1" opacity="0.35"/>
+        <circle cx="100" cy="100" r="22" fill="none" stroke="#1E6BFF" stroke-width="2.5"/>
+        <line x1="78" y1="100" x2="90" y2="100" stroke="#1E6BFF" stroke-width="3"/>
+        <line x1="110" y1="100" x2="122" y2="100" stroke="#1E6BFF" stroke-width="3"/>
+        <line x1="100" y1="78" x2="100" y2="90" stroke="#1E6BFF" stroke-width="3"/>
+        <line x1="100" y1="110" x2="100" y2="122" stroke="#1E6BFF" stroke-width="3"/>
+        <circle cx="100" cy="100" r="5" fill="#1E6BFF"/>
+        <circle cx="52" cy="72" r="4" fill="#3A8AFF" opacity="0.9"/>
+        <circle cx="148" cy="66" r="4" fill="#3A8AFF" opacity="0.9"/>
+        <circle cx="132" cy="132" r="4" fill="#3A8AFF" opacity="0.9"/>
+        <line x1="52" y1="72" x2="148" y2="66" stroke="#3A8AFF" stroke-width="0.7" opacity="0.5"/>
+        <line x1="148" y1="66" x2="132" y2="132" stroke="#3A8AFF" stroke-width="0.7" opacity="0.5"/>
+      </svg>
+      <div class="nav-logo-text">
+        <span class="brand-main">GLOBAL</span>
+        <span class="brand-sub">PEST SUPPLIES</span>
+      </div>
+    </a>
+
+    <ul class="nav-links">
+      <li class="has-dropdown">
+        <a href="shop-by-pest.html">Shop by Pest <span class="dropdown-arrow">▾</span></a>
+        <div class="nav-dropdown">
+          <a href="shop-by-pest.html?pest=ants">🐜 Ants</a>
+          <a href="shop-by-pest.html?pest=cockroaches">🪳 Cockroaches</a>
+          <a href="shop-by-pest.html?pest=rodents">🐭 Rodents</a>
+          <a href="shop-by-pest.html?pest=termites">🪲 Termites</a>
+          <a href="shop-by-pest.html?pest=mosquitoes">🦟 Mosquitoes</a>
+          <a href="shop-by-pest.html?pest=bedbugs">🛏️ Bed Bugs</a>
+          <a href="shop-by-pest.html?pest=fleas">🐾 Fleas &amp; Ticks</a>
+          <a href="shop-by-pest.html?pest=wasps">🐝 Wasps &amp; Spiders</a>
+        </div>
+      </li>
+      <li class="has-dropdown">
+        <a href="products.html">Products <span class="dropdown-arrow">▾</span></a>
+        <div class="nav-dropdown">
+          <a href="products.html">All Products</a>
+          <a href="diy-kits.html">DIY Kits</a>
+          <a href="best-sellers.html">⭐ Best Sellers</a>
+          <a href="professionals.html">Professional Supplies</a>
+        </div>
+      </li>
+      <li><a href="professionals.html">Professional</a></li>
+      <li><a href="learn.html">Learn</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <a href="account.html" class="nav-account" aria-label="Account">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Account
+      </a>
+      <a href="#" class="nav-cart" id="navCartBtn" aria-label="Open cart">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="flex-shrink:0">
+          <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/>
+          <path d="M16 10a4 4 0 01-8 0"/>
+        </svg>
+        Cart
+        <span class="cart-count-badge" id="cartCount" style="display:none;">0</span>
+      </a>
+      <button class="nav-hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+
+<!-- ============================================
+     HERO SECTION
+     ============================================ -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+
+  <!-- Animated Globe Network -->
+  <div class="hero-globe" aria-hidden="true">
+    <svg class="globe-svg" viewBox="0 0 700 700" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="globeMain" cx="45%" cy="45%" r="55%">
+          <stop offset="0%" stop-color="#0d2a5e" stop-opacity="0.9"/>
+          <stop offset="100%" stop-color="#050d1a" stop-opacity="0.6"/>
+        </radialGradient>
+        <radialGradient id="glowCenter" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#1E6BFF" stop-opacity="0.25"/>
+          <stop offset="100%" stop-color="#1E6BFF" stop-opacity="0"/>
+        </radialGradient>
+        <filter id="nodeGlow">
+          <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+          <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+        <filter id="lineGlow">
+          <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
+          <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+        <clipPath id="globeClip">
+          <circle cx="350" cy="350" r="320"/>
+        </clipPath>
+      </defs>
+
+      <!-- Outer glow halo -->
+      <circle cx="350" cy="350" r="340" fill="url(#glowCenter)"/>
+
+      <!-- Globe sphere -->
+      <circle cx="350" cy="350" r="320" fill="url(#globeMain)" stroke="#1E6BFF" stroke-width="1" opacity="0.8"/>
+
+      <!-- Grid lines clipped to globe -->
+      <g clip-path="url(#globeClip)" opacity="0.35">
+        <!-- Latitude lines -->
+        <ellipse cx="350" cy="350" rx="320" ry="80"  fill="none" stroke="#1E6BFF" stroke-width="0.8"/>
+        <ellipse cx="350" cy="350" rx="320" ry="160" fill="none" stroke="#1E6BFF" stroke-width="0.8"/>
+        <ellipse cx="350" cy="350" rx="320" ry="240" fill="none" stroke="#1E6BFF" stroke-width="0.8"/>
+        <line x1="30" y1="350" x2="670" y2="350" stroke="#1E6BFF" stroke-width="0.8"/>
+        <!-- Longitude arcs -->
+        <ellipse cx="350" cy="350" rx="80"  ry="320" fill="none" stroke="#1E6BFF" stroke-width="0.8"/>
+        <ellipse cx="350" cy="350" rx="160" ry="320" fill="none" stroke="#1E6BFF" stroke-width="0.8"/>
+        <ellipse cx="350" cy="350" rx="240" ry="320" fill="none" stroke="#1E6BFF" stroke-width="0.8"/>
+        <line x1="350" y1="30" x2="350" y2="670" stroke="#1E6BFF" stroke-width="0.8"/>
+      </g>
+
+      <!-- Continents silhouette (simplified) -->
+      <g clip-path="url(#globeClip)" opacity="0.18" fill="#3A8AFF">
+        <!-- North America -->
+        <path d="M180,200 C200,180 240,170 280,190 C310,205 330,230 320,260 C310,285 280,300 260,310 C240,320 220,315 200,300 C180,285 160,260 165,235 Z"/>
+        <!-- Europe -->
+        <path d="M360,185 C380,175 410,178 430,192 C445,204 448,222 440,235 C432,248 415,254 400,250 C385,246 368,236 360,222 C352,208 352,195 360,185 Z"/>
+        <!-- Africa -->
+        <path d="M370,265 C390,258 415,262 428,278 C442,296 440,325 432,348 C424,370 408,385 390,385 C372,385 356,372 348,352 C340,332 340,305 350,285 Z"/>
+        <!-- Asia -->
+        <path d="M440,195 C470,185 510,188 545,205 C575,220 590,248 580,272 C570,296 548,308 522,308 C496,308 472,296 458,276 C444,256 440,230 440,210 Z"/>
+        <!-- South America -->
+        <path d="M238,320 C252,310 275,312 290,328 C305,344 308,368 298,390 C288,410 270,422 252,420 C234,418 220,404 216,386 C212,368 218,344 230,330 Z"/>
+        <!-- Australia -->
+        <path d="M518,340 C536,332 558,336 570,350 C582,364 580,385 568,396 C556,407 536,408 522,400 C508,392 500,374 502,358 Z"/>
+      </g>
+
+      <!-- Network connection lines -->
+      <g opacity="0.55" filter="url(#lineGlow)">
+        <line x1="200" y1="230" x2="390" y2="195" stroke="#1E6BFF" stroke-width="1" stroke-dasharray="4 3">
+          <animate attributeName="stroke-dashoffset" values="0;-14" dur="2.5s" repeatCount="indefinite"/>
+        </line>
+        <line x1="390" y1="195" x2="520" y2="210" stroke="#1E6BFF" stroke-width="1" stroke-dasharray="4 3">
+          <animate attributeName="stroke-dashoffset" values="0;-14" dur="2.0s" repeatCount="indefinite"/>
+        </line>
+        <line x1="520" y1="210" x2="580" y2="290" stroke="#1E6BFF" stroke-width="1" stroke-dasharray="4 3">
+          <animate attributeName="stroke-dashoffset" values="0;-14" dur="3.0s" repeatCount="indefinite"/>
+        </line>
+        <line x1="390" y1="195" x2="410" y2="310" stroke="#1E6BFF" stroke-width="1" stroke-dasharray="4 3">
+          <animate attributeName="stroke-dashoffset" values="0;-14" dur="2.2s" repeatCount="indefinite"/>
+        </line>
+        <line x1="200" y1="230" x2="265" y2="350" stroke="#1E6BFF" stroke-width="1" stroke-dasharray="4 3">
+          <animate attributeName="stroke-dashoffset" values="0;-14" dur="2.8s" repeatCount="indefinite"/>
+        </line>
+        <line x1="265" y1="350" x2="410" y2="310" stroke="#1E6BFF" stroke-width="1" stroke-dasharray="4 3">
+          <animate attributeName="stroke-dashoffset" values="0;-14" dur="1.9s" repeatCount="indefinite"/>
+        </line>
+        <line x1="540" y1="368" x2="580" y2="290" stroke="#1E6BFF" stroke-width="1" stroke-dasharray="4 3">
+          <animate attributeName="stroke-dashoffset" values="0;-14" dur="2.4s" repeatCount="indefinite"/>
+        </line>
+        <line x1="265" y1="350" x2="540" y2="368" stroke="#3A8AFF" stroke-width="0.7" stroke-dasharray="3 4" opacity="0.6">
+          <animate attributeName="stroke-dashoffset" values="0;-14" dur="3.5s" repeatCount="indefinite"/>
+        </line>
+        <line x1="150" y1="340" x2="200" y2="230" stroke="#3A8AFF" stroke-width="0.7" stroke-dasharray="3 4" opacity="0.5">
+          <animate attributeName="stroke-dashoffset" values="0;-14" dur="2.1s" repeatCount="indefinite"/>
+        </line>
+      </g>
+
+      <!-- Network nodes -->
+      <g filter="url(#nodeGlow)">
+        <circle cx="200" cy="230" r="6" fill="#1E6BFF">
+          <animate attributeName="r" values="5;8;5" dur="3s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.8;1;0.8" dur="3s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="390" cy="195" r="8" fill="#3A8AFF">
+          <animate attributeName="r" values="6;10;6" dur="2.5s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.9;1;0.9" dur="2.5s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="520" cy="210" r="6" fill="#1E6BFF">
+          <animate attributeName="r" values="5;8;5" dur="3.2s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="580" cy="290" r="5" fill="#3A8AFF">
+          <animate attributeName="r" values="4;7;4" dur="2.8s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="265" cy="350" r="7" fill="#1E6BFF">
+          <animate attributeName="r" values="5;9;5" dur="2.2s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.85;1;0.85" dur="2.2s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="410" cy="310" r="6" fill="#3A8AFF">
+          <animate attributeName="r" values="5;8;5" dur="3.5s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="540" cy="368" r="5" fill="#1E6BFF">
+          <animate attributeName="r" values="4;7;4" dur="2.6s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="150" cy="340" r="4" fill="#3A8AFF">
+          <animate attributeName="r" values="3;6;3" dur="3.8s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="460" cy="420" r="4" fill="#1E6BFF">
+          <animate attributeName="r" values="3;6;3" dur="2.9s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="310" cy="280" r="4" fill="#3A8AFF">
+          <animate attributeName="r" values="3;5;3" dur="3.3s" repeatCount="indefinite"/>
+        </circle>
+      </g>
+
+      <!-- Outer rim glow -->
+      <circle cx="350" cy="350" r="320" fill="none" stroke="#1E6BFF" stroke-width="2" opacity="0.5"/>
+      <circle cx="350" cy="350" r="326" fill="none" stroke="#1E6BFF" stroke-width="0.5" opacity="0.2"/>
+    </svg>
+  </div>
+
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-tag">🌍 Global Supply Network</div>
+
+      <h1>Professional Pest Control Solutions Worldwide</h1>
+
+      <p class="hero-sub">
+        DIY pest control for homeowners.<br>
+        Professional-grade supplies for licensed exterminators.
+      </p>
+
+      <div class="hero-ctas">
+        <button class="btn-primary" data-open-finder>
+          🔍 Find Your Pest
+        </button>
+        <a href="#kits" class="btn-secondary">
+          Shop Products →
+        </a>
+      </div>
+
+      <div class="hero-trust">
+        <div class="trust-item">
+          <div class="trust-icon">👥</div>
+          Trusted by 12,000+ Pest Professionals
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon">🚚</div>
+          Fast Nationwide Shipping
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon">✅</div>
+          EPA Compliant Products
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     PEST FINDER SECTION
+     ============================================ -->
+<section class="pest-finder-section" id="pest-finder">
+  <div class="container">
+    <h2 class="section-title" style="margin-bottom:24px;">Find the Right <span>Solution</span></h2>
+
+    <div class="pest-tabs-wrapper">
+      <div class="pest-tabs" role="tablist" aria-label="Pest categories">
+        <button class="pest-tab active" data-pest="ants" role="tab" aria-selected="true">
+          <span class="pest-tab-icon">🐜</span> Ants
+        </button>
+        <button class="pest-tab" data-pest="rodents" role="tab">
+          <span class="pest-tab-icon">🐭</span> Rodents
+        </button>
+        <button class="pest-tab" data-pest="cockroaches" role="tab">
+          <span class="pest-tab-icon">🪳</span> Cockroaches
+        </button>
+        <button class="pest-tab" data-pest="termites" role="tab">
+          <span class="pest-tab-icon">🪲</span> Termites
+        </button>
+        <button class="pest-tab" data-pest="mosquitoes" role="tab">
+          <span class="pest-tab-icon">🦟</span> Mosquitoes
+        </button>
+        <button class="pest-tab" data-pest="bedbugs" role="tab">
+          <span class="pest-tab-icon">🛏️</span> Bed Bugs
+        </button>
+        <button class="pest-tab" data-pest="fleas" role="tab">
+          <span class="pest-tab-icon">🐾</span> Fleas
+        </button>
+        <button class="pest-tab" data-pest="wasps" role="tab">
+          <span class="pest-tab-icon">🐝</span> Wasps
+        </button>
+      </div>
+    </div>
+
+    <div class="pest-results visible" id="pestResults">
+      <p class="pest-results-header">Showing solutions for <span id="pestResultsName">Ants</span></p>
+      <div class="product-grid" id="pestProductsGrid">
+        <!-- Populated by storefront.js / pest-finder.js from the live catalog -->
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     DIY KITS + PROFESSIONAL SIDEBAR
+     ============================================ -->
+<section class="kits-section" id="kits">
+  <div class="container">
+    <div class="kits-layout">
+
+      <!-- Left: Complete Kits (rendered from the live catalog) -->
+      <div>
+        <div class="section-header" style="margin-bottom:24px;">
+          <h2 class="section-title" style="margin-bottom:0;"><span>Complete</span> Control Kits</h2>
+          <a href="diy-kits.html" class="btn-outline-blue">Shop All Kits →</a>
+        </div>
+        <div class="product-grid" id="kitsGrid" style="grid-template-columns:repeat(2,1fr);">
+          <!-- Populated by storefront.js -->
+        </div>
+      </div>
+
+      <!-- Right Sidebar -->
+      <div class="kits-sidebar">
+
+        <div class="info-card" id="professional">
+          <div class="info-card-bg"></div>
+          <h3>Professional Solutions</h3>
+          <p class="subtitle">For Pest Control Companies</p>
+          <ul>
+            <li>Restricted &amp; pro-grade concentrates</li>
+            <li>Bulk &amp; bundle pricing</li>
+            <li>Business starter bundles</li>
+            <li>Priority nationwide shipping</li>
+          </ul>
+          <a href="professionals.html" class="btn-outline-blue">Shop Professional →</a>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card-bg"></div>
+          <h3>Global Supply Network</h3>
+          <p class="subtitle">Trusted Supplier of Pest Control Products Across the US</p>
+          <ul>
+            <li>Ships to all 50 states</li>
+            <li>Same-day dispatch on orders before 2PM</li>
+            <li>Free shipping on orders $75+</li>
+          </ul>
+          <a href="products.html" class="btn-outline-blue">Browse Catalog →</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     BEST SELLERS CAROUSEL
+     ============================================ -->
+<section class="bestsellers-section" id="bestsellers">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title" style="margin-bottom:0;">Best <span>Sellers</span></h2>
+      <div class="carousel-controls">
+        <button class="carousel-btn prev" aria-label="Previous">‹</button>
+        <button class="carousel-btn next" aria-label="Next">›</button>
+      </div>
+    </div>
+
+    <div class="carousel-track-wrapper">
+      <div class="carousel-track" id="bestsellersTrack">
+        <!-- Populated by storefront.js from the live catalog -->
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     WHY GLOBAL PEST SUPPLIES
+     ============================================ -->
+<section class="trust-section" id="why">
+  <div class="container">
+    <h2 class="section-title" style="text-align:center;">Why <span>Global Pest Supplies?</span></h2>
+    <div class="trust-grid">
+      <div class="trust-card">
+        <div class="trust-card-icon">🏭</div>
+        <h4>Commercial-Grade Products</h4>
+        <p>Professional-strength formulas used by licensed exterminators nationwide.</p>
+      </div>
+      <div class="trust-card">
+        <div class="trust-card-icon">🚚</div>
+        <h4>Fast Nationwide Shipping</h4>
+        <p>Same-day dispatch on orders placed before 2PM. Ships to all 50 states.</p>
+      </div>
+      <div class="trust-card">
+        <div class="trust-card-icon">✅</div>
+        <h4>Licensed Supplier</h4>
+        <p>EPA compliant, fully licensed pest control supply distributor.</p>
+      </div>
+      <div class="trust-card">
+        <div class="trust-card-icon">👷</div>
+        <h4>Trusted by Professionals</h4>
+        <p>Over 12,000 pest control companies rely on our products every day.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     PRO MEMBERSHIP
+     ============================================ -->
+<section class="pro-section">
+  <div class="container">
+    <div class="pro-layout">
+      <div class="pro-content">
+        <div class="hero-tag" style="margin-bottom:16px;">🏢 For Businesses</div>
+        <h2>Pro Plan for Pest Control <span style="color:var(--blue-glow);">Companies</span></h2>
+        <p class="pro-desc">
+          Get access to restricted pesticides, wholesale pricing, and bulk ordering tools built for professional pest control operations.
+        </p>
+        <div class="pro-features">
+          <div class="pro-feature">
+            <div class="pro-feature-icon">🔓</div>
+            Access to restricted pesticides with license verification
+          </div>
+          <div class="pro-feature">
+            <div class="pro-feature-icon">💰</div>
+            Wholesale pricing + bulk discounts up to 40%
+          </div>
+          <div class="pro-feature">
+            <div class="pro-feature-icon">🚀</div>
+            Priority shipping and dedicated account manager
+          </div>
+          <div class="pro-feature">
+            <div class="pro-feature-icon">📡</div>
+            API ordering integration for enterprise accounts
+          </div>
+        </div>
+        <a href="professionals.html" class="btn-primary">Shop Professional Supplies →</a>
+      </div>
+
+      <div class="pro-cards">
+        <div class="pricing-card">
+          <div class="pricing-header">
+            <span class="pricing-name">Pro Basic</span>
+          </div>
+          <div class="pricing-price">$29<span>/month</span></div>
+          <p class="pricing-perks">Wholesale pricing + restricted products + priority shipping</p>
+          <a href="professionals.html" class="btn-outline-blue" style="width:100%;justify-content:center;">Get Started →</a>
+        </div>
+        <div class="pricing-card featured">
+          <div class="pricing-header">
+            <span class="pricing-name">Pro Elite</span>
+            <span class="pricing-tag">Most Popular</span>
+          </div>
+          <div class="pricing-price">$79<span>/month</span></div>
+          <p class="pricing-perks">Everything in Basic + bulk discounts + business starter bundle</p>
+          <a href="products.html" class="btn-primary" style="width:100%;justify-content:center;">Get Started →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     EDUCATION HUB
+     ============================================ -->
+<section class="education-section" id="education">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title" style="margin-bottom:0;">Pest Control <span>Guides</span></h2>
+      <a href="learn.html" class="btn-outline-blue">View All Guides →</a>
+    </div>
+    <div class="edu-grid" id="guidesGrid">
+      <!-- Populated by storefront.js — links to the live blog -->
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     FOOTER
+     ============================================ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+
+      <div class="footer-brand">
+        <a href="#" class="nav-logo" style="margin-bottom:0;">
+          <svg width="32" height="32" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="100" cy="100" r="80" fill="#0d1e38" stroke="#1E6BFF" stroke-width="2"/>
+            <ellipse cx="100" cy="100" rx="80" ry="22" fill="none" stroke="#1E6BFF" stroke-width="1" opacity="0.5"/>
+            <line x1="20" y1="100" x2="180" y2="100" stroke="#1E6BFF" stroke-width="1" opacity="0.4"/>
+            <line x1="100" y1="20" x2="100" y2="180" stroke="#1E6BFF" stroke-width="1" opacity="0.4"/>
+            <circle cx="100" cy="100" r="18" fill="none" stroke="#1E6BFF" stroke-width="2"/>
+            <line x1="82" y1="100" x2="91" y2="100" stroke="#1E6BFF" stroke-width="2.5"/>
+            <line x1="109" y1="100" x2="118" y2="100" stroke="#1E6BFF" stroke-width="2.5"/>
+            <line x1="100" y1="82" x2="100" y2="91" stroke="#1E6BFF" stroke-width="2.5"/>
+            <line x1="100" y1="109" x2="100" y2="118" stroke="#1E6BFF" stroke-width="2.5"/>
+            <circle cx="100" cy="100" r="4" fill="#1E6BFF"/>
+          </svg>
+          <div class="nav-logo-text">
+            <span class="brand-main">GLOBAL</span>
+            <span class="brand-sub">PEST SUPPLIES</span>
+          </div>
+        </a>
+        <p>Professional pest control solutions for homeowners and licensed exterminators worldwide.</p>
+        <div class="footer-socials">
+          <a href="#" class="social-icon" aria-label="Facebook">f</a>
+          <a href="#" class="social-icon" aria-label="Twitter">t</a>
+          <a href="#" class="social-icon" aria-label="Instagram">ig</a>
+          <a href="#" class="social-icon" aria-label="YouTube">yt</a>
+          <a href="#" class="social-icon" aria-label="LinkedIn">in</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h5>Shop</h5>
+        <ul>
+          <li><a href="products.html">All Products</a></li>
+          <li><a href="diy-kits.html">DIY Kits</a></li>
+          <li><a href="best-sellers.html">Best Sellers</a></li>
+          <li><a href="shop-by-pest.html">Shop by Pest</a></li>
+          <li><a href="professionals.html">Professional Supplies</a></li>
+          <li><a href="checkout.html">Cart</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Learn</h5>
+        <ul>
+          <li><a href="learn.html">Pest Control Guides</a></li>
+          <li><a href="learn.html?pest=ants">Ant Control</a></li>
+          <li><a href="learn.html?pest=rodents">Rodent Control</a></li>
+          <li><a href="learn.html?pest=termites">Termite Prevention</a></li>
+          <li><a href="newsletter.html">Newsletter</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Account &amp; Support</h5>
+        <ul>
+          <li><a href="account.html">My Account</a></li>
+          <li><a href="account.html?mode=register">Create Account</a></li>
+          <li><a href="https://global-pest-supplies.myshopify.com/pages/contact">Contact Us</a></li>
+          <li><a href="https://global-pest-supplies.myshopify.com/pages/shipping-policy">Shipping Policy</a></li>
+          <li><a href="https://global-pest-supplies.myshopify.com/pages/returns-refunds">Returns &amp; Refunds</a></li>
+          <li><a href="https://global-pest-supplies.myshopify.com/policies/privacy-policy">Privacy Policy</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 Global Pest Supplies. All rights reserved. | EPA Licensed Distributor</p>
+      <div class="footer-phone">
+        📞 <strong>1-800-123-4567</strong> | Mon–Fri 8am–6pm EST
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ============================================
+     PEST FINDER MODAL
+     ============================================ -->
+<div class="finder-overlay" id="finderOverlay" role="dialog" aria-modal="true" aria-label="Pest Finder">
+  <div class="finder-modal">
+    <button class="finder-close" id="finderClose" aria-label="Close">✕</button>
+
+    <!-- Progress dots -->
+    <div class="finder-progress" aria-hidden="true">
+      <div class="progress-dot active"></div>
+      <div class="progress-dot"></div>
+      <div class="progress-dot"></div>
+      <div class="progress-dot"></div>
+    </div>
+
+    <!-- Step 1: Select Pest -->
+    <div class="finder-step active" id="finderStep1">
+      <div class="finder-step-label">Step 1 of 3</div>
+      <h3>What pest are you dealing with?</h3>
+      <div class="finder-pest-grid">
+        <button class="finder-pest-btn" data-pest="ants"><span class="pest-emoji">🐜</span>Ants</button>
+        <button class="finder-pest-btn" data-pest="rodents"><span class="pest-emoji">🐭</span>Rodents</button>
+        <button class="finder-pest-btn" data-pest="cockroaches"><span class="pest-emoji">🪳</span>Cockroaches</button>
+        <button class="finder-pest-btn" data-pest="termites"><span class="pest-emoji">🪲</span>Termites</button>
+        <button class="finder-pest-btn" data-pest="mosquitoes"><span class="pest-emoji">🦟</span>Mosquitoes</button>
+        <button class="finder-pest-btn" data-pest="bedbugs"><span class="pest-emoji">🛏️</span>Bed Bugs</button>
+        <button class="finder-pest-btn" data-pest="fleas"><span class="pest-emoji">🐾</span>Fleas</button>
+        <button class="finder-pest-btn" data-pest="wasps"><span class="pest-emoji">🐝</span>Wasps</button>
+      </div>
+      <div class="finder-nav">
+        <button class="btn-primary" onclick="nextStep()">Continue →</button>
+      </div>
+    </div>
+
+    <!-- Step 2: Severity -->
+    <div class="finder-step" id="finderStep2">
+      <div class="finder-step-label">Step 2 of 3</div>
+      <h3>How severe is the infestation?</h3>
+      <div class="finder-options">
+        <div class="finder-option" data-severity="mild">
+          <div style="font-size:1.5rem;margin-bottom:6px;">🟡</div>
+          <strong>Mild</strong>
+          <div style="font-size:0.78rem;color:var(--text-muted);margin-top:4px;">Occasional sightings</div>
+        </div>
+        <div class="finder-option" data-severity="moderate">
+          <div style="font-size:1.5rem;margin-bottom:6px;">🟠</div>
+          <strong>Moderate</strong>
+          <div style="font-size:0.78rem;color:var(--text-muted);margin-top:4px;">Frequent activity</div>
+        </div>
+        <div class="finder-option" data-severity="severe">
+          <div style="font-size:1.5rem;margin-bottom:6px;">🔴</div>
+          <strong>Severe</strong>
+          <div style="font-size:0.78rem;color:var(--text-muted);margin-top:4px;">Full infestation</div>
+        </div>
+      </div>
+      <div class="finder-nav">
+        <button class="btn-secondary" onclick="prevStep()">← Back</button>
+        <button class="btn-primary" onclick="nextStep()">Continue →</button>
+      </div>
+    </div>
+
+    <!-- Step 3: Location -->
+    <div class="finder-step" id="finderStep3">
+      <div class="finder-step-label">Step 3 of 3</div>
+      <h3>Where is the problem?</h3>
+      <div class="finder-options">
+        <div class="finder-option" data-location="indoor">
+          <div style="font-size:1.5rem;margin-bottom:6px;">🏠</div>
+          <strong>Indoors</strong>
+          <div style="font-size:0.78rem;color:var(--text-muted);margin-top:4px;">Inside your home</div>
+        </div>
+        <div class="finder-option" data-location="outdoor">
+          <div style="font-size:1.5rem;margin-bottom:6px;">🌿</div>
+          <strong>Outdoors</strong>
+          <div style="font-size:0.78rem;color:var(--text-muted);margin-top:4px;">Yard or perimeter</div>
+        </div>
+        <div class="finder-option" data-location="both">
+          <div style="font-size:1.5rem;margin-bottom:6px;">🏡</div>
+          <strong>Both</strong>
+          <div style="font-size:0.78rem;color:var(--text-muted);margin-top:4px;">Entire property</div>
+        </div>
+      </div>
+      <div class="finder-nav">
+        <button class="btn-secondary" onclick="prevStep()">← Back</button>
+        <button class="btn-primary" onclick="nextStep()">Find Solutions →</button>
+      </div>
+    </div>
+
+    <!-- Step 4: Results -->
+    <div class="finder-step finder-results" id="finderStep4">
+      <div class="finder-step-label">✅ Recommendations Ready</div>
+      <h3 id="finderResultTitle">Recommended Products</h3>
+      <p class="result-desc" id="finderResultDesc">Based on your answers, here are the best products for your situation.</p>
+      <div class="finder-products" id="finderProducts"></div>
+      <div class="finder-nav" style="margin-top:20px;">
+        <button class="btn-secondary" onclick="setStep(1)">Start Over</button>
+        <button class="btn-primary" onclick="closeFinder()">Done</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<script src="catalog.js"></script>
+<script src="storefront.js"></script>
+<script src="pest-finder.js"></script>
+<script src="shopify-storefront.js"></script>
+<script src="main.js"></script>
+<script>
+/* Nav dropdowns on homepage */
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.has-dropdown').forEach(li => {
+    const dropdown = li.querySelector('.nav-dropdown');
+    if (!dropdown) return;
+    li.addEventListener('mouseenter', () => dropdown.classList.add('open'));
+    li.addEventListener('mouseleave', () => dropdown.classList.remove('open'));
+  });
+
+  /* Cart button → open drawer (already handled by shopify-storefront.js) */
+  const cartBtn = document.getElementById('navCartBtn');
+  if (cartBtn) cartBtn.addEventListener('click', e => {
+    e.preventDefault();
+    if (typeof openCartDrawer === 'function') openCartDrawer();
+    else window.location.href = 'checkout.html';
+  });
+});
+</script>
+</body>
+</html>

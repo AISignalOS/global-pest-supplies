@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Store Preview — Global Pest Supplies</title>
+  <meta name="description" content="Preview of the Global Pest Supplies storefront design.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Page-specific overrides */
+    .preview-banner {
+      background: linear-gradient(90deg, #0a1628, #0d2040);
+      border-bottom: 1px solid rgba(30,107,255,0.3);
+      text-align: center;
+      padding: 8px 24px;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.6);
+      letter-spacing: 0.03em;
+    }
+    .preview-banner strong { color: var(--blue-glow); }
+
+    /* Pest category grid */
+    .pest-cat-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    .pest-cat-card {
+      background: var(--card-bg);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px 16px 20px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--white);
+      transition: all var(--transition);
+      text-decoration: none;
+    }
+    .pest-cat-card:hover {
+      border-color: var(--blue);
+      background: rgba(30,107,255,0.1);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(30,107,255,0.2);
+    }
+    .pest-cat-icon {
+      font-size: 2.4rem;
+      display: block;
+      filter: drop-shadow(0 0 8px rgba(30,107,255,0.3));
+    }
+
+    /* Post cards */
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .blog-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: all var(--transition);
+      text-decoration: none;
+      display: block;
+    }
+    .blog-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--border-hover);
+      box-shadow: var(--shadow-blue);
+    }
+    .blog-card-img {
+      height: 130px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      background: linear-gradient(135deg, #0d2040 0%, #0a1628 100%);
+      border-bottom: 1px solid var(--border);
+    }
+    .blog-card-body {
+      padding: 18px;
+    }
+    .blog-tag {
+      display: inline-block;
+      background: rgba(30,107,255,0.15);
+      color: var(--blue-glow);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
+    .blog-card h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 8px;
+      line-height: 1.35;
+    }
+    .blog-card p {
+      font-size: 0.83rem;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      line-height: 1.55;
+    }
+    .blog-readmore {
+      color: var(--blue-glow);
+      font-weight: 600;
+      font-size: 0.82rem;
+    }
+
+    /* Email section */
+    .email-section {
+      background: linear-gradient(135deg, #0d2040, #0a1628);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 72px 0;
+      text-align: center;
+    }
+    .email-section h2 { margin-bottom: 12px; }
+    .email-section p { color: rgba(255,255,255,0.6); margin-bottom: 32px; }
+    .email-form {
+      display: flex;
+      gap: 10px;
+      max-width: 480px;
+      margin: 0 auto;
+      justify-content: center;
+    }
+    .email-form input {
+      flex: 1;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--white);
+      padding: 13px 16px;
+      font-size: 0.95rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .email-form input:focus { border-color: var(--blue); }
+    .email-form input::placeholder { color: var(--text-muted); }
+
+    /* Why grid */
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    .why-item {
+      text-align: center;
+      padding: 32px 20px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      transition: all var(--transition);
+    }
+    .why-item:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-3px);
+    }
+    .why-icon {
+      font-size: 2rem;
+      margin-bottom: 14px;
+      filter: drop-shadow(0 0 8px rgba(30,107,255,0.3));
+    }
+    .why-item h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+    .why-item p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* Section spacing */
+    .page-section { padding: 80px 0; }
+    .page-section.alt { background: rgba(13,30,53,0.5); }
+    .section-sub {
+      text-align: center;
+      color: var(--text-muted);
+      max-width: 580px;
+      margin: 0 auto 40px;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+    .centered { text-align: center; margin-bottom: 40px; }
+
+    @media (max-width: 900px) {
+      .pest-cat-grid, .why-grid { grid-template-columns: repeat(2, 1fr); }
+      .blog-grid { grid-template-columns: 1fr; }
+      .product-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .pest-cat-grid { grid-template-columns: repeat(2, 1fr); }
+      .why-grid { grid-template-columns: 1fr 1fr; }
+      .email-form { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+<div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
+<!-- Announcement bar -->
+<div class="preview-banner">
+  🔎 This is a <strong>branded design preview</strong> — all buttons link to the live Shopify store.
+  &nbsp;|&nbsp; Free shipping on orders $75+ &nbsp;·&nbsp; Code <strong>WELCOME10</strong> for 10% off
+</div>
+
+<!-- NAV (identical to index.html) -->
+<nav class="nav" role="navigation" aria-label="Main">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="Global Pest Supplies Home">
+      <svg width="36" height="36" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="ng" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#1a3a6e"/>
+            <stop offset="100%" stop-color="#0a1628"/>
+          </radialGradient>
+        </defs>
+        <circle cx="100" cy="100" r="80" fill="url(#ng)" stroke="#1E6BFF" stroke-width="2"/>
+        <ellipse cx="100" cy="100" rx="80" ry="22" fill="none" stroke="#1E6BFF" stroke-width="1" opacity="0.5"/>
+        <line x1="20" y1="100" x2="180" y2="100" stroke="#1E6BFF" stroke-width="1" opacity="0.4"/>
+        <line x1="100" y1="20" x2="100" y2="180" stroke="#1E6BFF" stroke-width="1" opacity="0.4"/>
+        <ellipse cx="100" cy="100" rx="35" ry="80" fill="none" stroke="#1E6BFF" stroke-width="1" opacity="0.35"/>
+        <circle cx="100" cy="100" r="22" fill="none" stroke="#1E6BFF" stroke-width="2.5"/>
+        <line x1="78" y1="100" x2="90" y2="100" stroke="#1E6BFF" stroke-width="3"/>
+        <line x1="110" y1="100" x2="122" y2="100" stroke="#1E6BFF" stroke-width="3"/>
+        <line x1="100" y1="78" x2="100" y2="90" stroke="#1E6BFF" stroke-width="3"/>
+        <line x1="100" y1="110" x2="100" y2="122" stroke="#1E6BFF" stroke-width="3"/>
+        <circle cx="100" cy="100" r="5" fill="#1E6BFF"/>
+        <circle cx="52" cy="72" r="4" fill="#3A8AFF" opacity="0.9"/>
+        <circle cx="148" cy="66" r="4" fill="#3A8AFF" opacity="0.9"/>
+        <circle cx="132" cy="132" r="4" fill="#3A8AFF" opacity="0.9"/>
+        <line x1="52" y1="72" x2="148" y2="66" stroke="#3A8AFF" stroke-width="0.7" opacity="0.5"/>
+        <line x1="148" y1="66" x2="132" y2="132" stroke="#3A8AFF" stroke-width="0.7" opacity="0.5"/>
+      </svg>
+      <div class="nav-logo-text">
+        <span class="brand-main">GLOBAL</span>
+        <span class="brand-sub">PEST SUPPLIES</span>
+      </div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="index.html#pest-finder">Shop by Pest</a></li>
+      <li><a href="https://global-pest-supplies.myshopify.com/collections/all">All Products</a></li>
+      <li><a href="https://global-pest-supplies.myshopify.com/collections/diy-kits">DIY Kits</a></li>
+      <li><a href="https://global-pest-supplies.myshopify.com/collections/professional-supplies">Professional</a></li>
+      <li><a href="https://global-pest-supplies.myshopify.com/blogs/pest-control-guides">Guides</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <a href="https://global-pest-supplies.myshopify.com/account/login" style="font-size:0.85rem;color:var(--text-muted);padding:8px 12px;border-radius:6px;transition:color 0.2s;">Login</a>
+      <a href="#" class="nav-cart" id="navCartBtn" aria-label="Open cart">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="flex-shrink:0">
+          <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/>
+          <path d="M16 10a4 4 0 01-8 0"/>
+        </svg>
+        Cart
+        <span class="cart-count-badge" id="cartCount" style="display:none;">0</span>
+      </a>
+      <button class="nav-hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-globe" aria-hidden="true">
+    <svg class="globe-svg" viewBox="0 0 700 700" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="globeMain2" cx="45%" cy="45%" r="55%">
+          <stop offset="0%" stop-color="#0d2a5e" stop-opacity="0.9"/>
+          <stop offset="100%" stop-color="#050d1a" stop-opacity="0.6"/>
+        </radialGradient>
+        <radialGradient id="glowCenter2" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#1E6BFF" stop-opacity="0.25"/>
+          <stop offset="100%" stop-color="#1E6BFF" stop-opacity="0"/>
+        </radialGradient>
+        <filter id="nodeGlow2"><feGaussianBlur stdDeviation="3" result="coloredBlur"/><feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        <clipPath id="globeClip2"><circle cx="350" cy="350" r="320"/></clipPath>
+      </defs>
+      <circle cx="350" cy="350" r="340" fill="url(#glowCenter2)"/>
+      <circle cx="350" cy="350" r="320" fill="url(#globeMain2)" stroke="#1E6BFF" stroke-width="1" opacity="0.8"/>
+      <g clip-path="url(#globeClip2)" opacity="0.35">
+        <ellipse cx="350" cy="350" rx="320" ry="80"  fill="none" stroke="#1E6BFF" stroke-width="0.8"/>
+        <ellipse cx="350" cy="350" rx="320" ry="160" fill="none" stroke="#1E6BFF" stroke-width="0.8"/>
+        <ellipse cx="350" cy="350" rx="320" ry="240" fill="none" stroke="#1E6BFF" stroke-width="0.8"/>
+        <line x1="30" y1="350" x2="670" y2="350" stroke="#1E6BFF" stroke-width="0.8"/>
+        <ellipse cx="350" cy="350" rx="80"  ry="320" fill="none" stroke="#1E6BFF" stroke-width="0.8"/>
+        <ellipse cx="350" cy="350" rx="160" ry="320" fill="none" stroke="#1E6BFF" stroke-width="0.8"/>
+        <ellipse cx="350" cy="350" rx="240" ry="320" fill="none" stroke="#1E6BFF" stroke-width="0.8"/>
+        <line x1="350" y1="30" x2="350" y2="670" stroke="#1E6BFF" stroke-width="0.8"/>
+      </g>
+      <g opacity="0.55" filter="url(#nodeGlow2)">
+        <line x1="200" y1="230" x2="390" y2="195" stroke="#1E6BFF" stroke-width="1" stroke-dasharray="4 3">
+          <animate attributeName="stroke-dashoffset" values="0;-14" dur="2.5s" repeatCount="indefinite"/>
+        </line>
+        <line x1="390" y1="195" x2="520" y2="210" stroke="#1E6BFF" stroke-width="1" stroke-dasharray="4 3">
+          <animate attributeName="stroke-dashoffset" values="0;-14" dur="2.0s" repeatCount="indefinite"/>
+        </line>
+        <line x1="265" y1="350" x2="410" y2="310" stroke="#1E6BFF" stroke-width="1" stroke-dasharray="4 3">
+          <animate attributeName="stroke-dashoffset" values="0;-14" dur="1.9s" repeatCount="indefinite"/>
+        </line>
+      </g>
+      <g filter="url(#nodeGlow2)">
+        <circle cx="200" cy="230" r="6" fill="#1E6BFF"><animate attributeName="r" values="5;8;5" dur="3s" repeatCount="indefinite"/></circle>
+        <circle cx="390" cy="195" r="8" fill="#3A8AFF"><animate attributeName="r" values="6;10;6" dur="2.5s" repeatCount="indefinite"/></circle>
+        <circle cx="520" cy="210" r="6" fill="#1E6BFF"><animate attributeName="r" values="5;8;5" dur="3.2s" repeatCount="indefinite"/></circle>
+        <circle cx="265" cy="350" r="7" fill="#1E6BFF"><animate attributeName="r" values="5;9;5" dur="2.2s" repeatCount="indefinite"/></circle>
+        <circle cx="410" cy="310" r="6" fill="#3A8AFF"><animate attributeName="r" values="5;8;5" dur="3.5s" repeatCount="indefinite"/></circle>
+      </g>
+      <circle cx="350" cy="350" r="320" fill="none" stroke="#1E6BFF" stroke-width="2" opacity="0.5"/>
+    </svg>
+  </div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-tag">🌍 Branded Store Preview</div>
+      <h1>Pest Control That Actually Works</h1>
+      <p class="hero-sub">
+        Pro-grade products licensed exterminators use — plus complete<br>
+        DIY kits with a step-by-step plan. Shipped to your door.
+      </p>
+      <div class="hero-ctas">
+        <a href="https://global-pest-supplies.myshopify.com/collections" class="btn-primary">Shop by Pest →</a>
+        <a href="https://global-pest-supplies.myshopify.com/collections/best-sellers" class="btn-secondary">Best Sellers</a>
+      </div>
+      <div class="hero-trust">
+        <div class="trust-item"><div class="trust-icon">🧪</div>Pro-grade active ingredients</div>
+        <div class="trust-item"><div class="trust-icon">💰</div>Save up to 70% vs an exterminator</div>
+        <div class="trust-item"><div class="trust-icon">🚚</div>Fast shipping · Free over $75</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- SHOP BY PEST -->
+<section class="page-section">
+  <div class="container">
+    <h2 class="section-title centered">Shop by <span>Pest</span></h2>
+    <p class="section-sub">Find the exact products to eliminate your problem — organised by what you're fighting.</p>
+    <div class="pest-cat-grid">
+      <a class="pest-cat-card" href="https://global-pest-supplies.myshopify.com/collections/ant-control">
+        <span class="pest-cat-icon">🐜</span>Ants
+      </a>
+      <a class="pest-cat-card" href="https://global-pest-supplies.myshopify.com/collections/cockroach-control">
+        <span class="pest-cat-icon">🪳</span>Cockroaches
+      </a>
+      <a class="pest-cat-card" href="https://global-pest-supplies.myshopify.com/collections/rodent-control">
+        <span class="pest-cat-icon">🐭</span>Rodents
+      </a>
+      <a class="pest-cat-card" href="https://global-pest-supplies.myshopify.com/collections/mosquito-control">
+        <span class="pest-cat-icon">🦟</span>Mosquitoes
+      </a>
+      <a class="pest-cat-card" href="https://global-pest-supplies.myshopify.com/collections/termite-control">
+        <span class="pest-cat-icon">🪲</span>Termites
+      </a>
+      <a class="pest-cat-card" href="https://global-pest-supplies.myshopify.com/collections/bed-bug-control">
+        <span class="pest-cat-icon">🛏️</span>Bed Bugs
+      </a>
+      <a class="pest-cat-card" href="https://global-pest-supplies.myshopify.com/collections/flea-tick-control">
+        <span class="pest-cat-icon">🐾</span>Fleas &amp; Ticks
+      </a>
+      <a class="pest-cat-card" href="https://global-pest-supplies.myshopify.com/collections/wasps-spiders">
+        <span class="pest-cat-icon">🐝</span>Wasps &amp; Spiders
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- BEST SELLERS -->
+<section class="page-section alt">
+  <div class="container">
+    <h2 class="section-title centered">Best <span>Sellers</span></h2>
+    <p class="section-sub">Our most popular products, trusted by homeowners and pros alike.</p>
+    <div class="product-grid">
+      <article class="pcard">
+        <a class="pcard-img" href="https://global-pest-supplies.myshopify.com/products/gps-mosquito-kit">
+          <span class="pcard-badge">Best Seller</span>
+          <span class="pcard-save">Save $20.00</span>
+          <span style="font-size:3rem;">🦟</span>
+        </a>
+        <div class="pcard-body">
+          <a class="pcard-name" href="https://global-pest-supplies.myshopify.com/products/gps-mosquito-kit">Mosquito Yard Defense Kit</a>
+          <p class="pcard-blurb">Barrier spray + Bti larvicide + sprayer.</p>
+          <div class="pcard-foot">
+            <div class="pcard-price">$69.99<span class="pcard-was">$89.99</span></div>
+            <a class="btn-shop" href="https://global-pest-supplies.myshopify.com/products/gps-mosquito-kit">View →</a>
+          </div>
+        </div>
+      </article>
+      <article class="pcard">
+        <a class="pcard-img" href="https://global-pest-supplies.myshopify.com/products/gps-roach-kit">
+          <span class="pcard-badge">Best Seller</span>
+          <span class="pcard-save">Save $15.00</span>
+          <span style="font-size:3rem;">🪳</span>
+        </a>
+        <div class="pcard-body">
+          <a class="pcard-name" href="https://global-pest-supplies.myshopify.com/products/gps-roach-kit">Complete Cockroach Kit</a>
+          <p class="pcard-blurb">Gel, dust, IGR &amp; monitors — kills colony + next gen.</p>
+          <div class="pcard-foot">
+            <div class="pcard-price">$54.99<span class="pcard-was">$69.99</span></div>
+            <a class="btn-shop" href="https://global-pest-supplies.myshopify.com/products/gps-roach-kit">View →</a>
+          </div>
+        </div>
+      </article>
+      <article class="pcard">
+        <a class="pcard-img" href="https://global-pest-supplies.myshopify.com/products/gps-ant-kit">
+          <span class="pcard-badge">Best Seller</span>
+          <span class="pcard-save">Save $15.00</span>
+          <span style="font-size:3rem;">🐜</span>
+        </a>
+        <div class="pcard-body">
+          <a class="pcard-name" href="https://global-pest-supplies.myshopify.com/products/gps-ant-kit">Complete Ant Control Kit</a>
+          <p class="pcard-blurb">Spray + gel + 12 stations with a step-by-step plan.</p>
+          <div class="pcard-foot">
+            <div class="pcard-price">$49.99<span class="pcard-was">$64.99</span></div>
+            <a class="btn-shop" href="https://global-pest-supplies.myshopify.com/products/gps-ant-kit">View →</a>
+          </div>
+        </div>
+      </article>
+      <article class="pcard">
+        <a class="pcard-img" href="https://global-pest-supplies.myshopify.com/products/gps-bed-bug-kit">
+          <span class="pcard-badge">Best Seller</span>
+          <span class="pcard-save">Save $40.00</span>
+          <span style="font-size:3rem;">🛏️</span>
+        </a>
+        <div class="pcard-body">
+          <a class="pcard-name" href="https://global-pest-supplies.myshopify.com/products/gps-bed-bug-kit">Bed Bug Elimination Kit</a>
+          <p class="pcard-blurb">Spray, dust, aerosol, encasements — full-room system.</p>
+          <div class="pcard-foot">
+            <div class="pcard-price">$119.99<span class="pcard-was">$159.99</span></div>
+            <a class="btn-shop" href="https://global-pest-supplies.myshopify.com/products/gps-bed-bug-kit">View →</a>
+          </div>
+        </div>
+      </article>
+    </div>
+    <div style="text-align:center;margin-top:36px;">
+      <a href="https://global-pest-supplies.myshopify.com/collections/best-sellers" class="btn-outline-blue">View All Best Sellers →</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- WHY GPS -->
+<section class="page-section">
+  <div class="container">
+    <h2 class="section-title centered">Why <span>Global Pest Supplies?</span></h2>
+    <div class="why-grid">
+      <div class="why-item">
+        <div class="why-icon">🧪</div>
+        <h4>Pro-Grade Products</h4>
+        <p>The same active ingredients licensed exterminators use — bifenthrin, indoxacarb, fipronil and more.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-icon">💰</div>
+        <h4>Save up to 70%</h4>
+        <p>DIY the job for a fraction of a single exterminator visit with no subscription needed.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-icon">🚚</div>
+        <h4>Fast Nationwide Shipping</h4>
+        <p>Quick dispatch on every order. Free shipping on orders over $75. Ships to all 50 states.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-icon">🎯</div>
+        <h4>Expert Guidance</h4>
+        <p>Step-by-step pest control guides and kits so you treat it right the first time.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- BLOG -->
+<section class="page-section alt">
+  <div class="container">
+    <div class="section-header" style="margin-bottom:36px;">
+      <h2 class="section-title" style="margin-bottom:0;">From the <span>Blog</span></h2>
+      <a href="https://global-pest-supplies.myshopify.com/blogs/pest-control-guides" class="btn-outline-blue">All Guides →</a>
+    </div>
+    <div class="blog-grid">
+      <a class="blog-card" href="https://global-pest-supplies.myshopify.com/blogs/pest-control-guides/how-to-get-rid-of-ants">
+        <div class="blog-card-img">🐜</div>
+        <div class="blog-card-body">
+          <span class="blog-tag">Ants</span>
+          <h4>How to Get Rid of Ants for Good</h4>
+          <p>The #1 mistake is spraying the ants you see. Here's the bait-first method pros use to kill the whole colony.</p>
+          <span class="blog-readmore">Read guide →</span>
+        </div>
+      </a>
+      <a class="blog-card" href="https://global-pest-supplies.myshopify.com/blogs/pest-control-guides/how-to-get-rid-of-cockroaches">
+        <div class="blog-card-img">🪳</div>
+        <div class="blog-card-body">
+          <span class="blog-tag">Cockroaches</span>
+          <h4>Get Rid of Cockroaches: Bait &amp; Dust</h4>
+          <p>A female German roach produces 10,000 offspring a year. This system clears them completely.</p>
+          <span class="blog-readmore">Read guide →</span>
+        </div>
+      </a>
+      <a class="blog-card" href="https://global-pest-supplies.myshopify.com/blogs/pest-control-guides/mosquito-control-yard">
+        <div class="blog-card-img">🦟</div>
+        <div class="blog-card-body">
+          <span class="blog-tag">Mosquitoes</span>
+          <h4>Control Mosquitoes in Your Yard</h4>
+          <p>Hit adults AND larvae at once for a bite-free yard all season long.</p>
+          <span class="blog-readmore">Read guide →</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- EMAIL SIGNUP -->
+<section class="email-section">
+  <div class="container">
+    <div class="hero-tag" style="margin:0 auto 20px;display:inline-flex;">✉️ Join the List</div>
+    <h2 class="section-title" style="margin-bottom:12px;">Get 10% Off Your First Order</h2>
+    <p>Pest control tips and exclusive deals. Use code <strong style="color:var(--blue-glow);">WELCOME10</strong> at checkout.</p>
+    <div class="email-form">
+      <input type="email" placeholder="Your email address">
+      <a href="https://global-pest-supplies.myshopify.com" class="btn-primary">Sign Up →</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER (identical to index.html) -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo" style="margin-bottom:0;">
+          <svg width="32" height="32" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="100" cy="100" r="80" fill="#0d1e38" stroke="#1E6BFF" stroke-width="2"/>
+            <ellipse cx="100" cy="100" rx="80" ry="22" fill="none" stroke="#1E6BFF" stroke-width="1" opacity="0.5"/>
+            <line x1="20" y1="100" x2="180" y2="100" stroke="#1E6BFF" stroke-width="1" opacity="0.4"/>
+            <line x1="100" y1="20" x2="100" y2="180" stroke="#1E6BFF" stroke-width="1" opacity="0.4"/>
+            <circle cx="100" cy="100" r="18" fill="none" stroke="#1E6BFF" stroke-width="2"/>
+            <line x1="82" y1="100" x2="91" y2="100" stroke="#1E6BFF" stroke-width="2.5"/>
+            <line x1="109" y1="100" x2="118" y2="100" stroke="#1E6BFF" stroke-width="2.5"/>
+            <line x1="100" y1="82" x2="100" y2="91" stroke="#1E6BFF" stroke-width="2.5"/>
+            <line x1="100" y1="109" x2="100" y2="118" stroke="#1E6BFF" stroke-width="2.5"/>
+            <circle cx="100" cy="100" r="4" fill="#1E6BFF"/>
+          </svg>
+          <div class="nav-logo-text">
+            <span class="brand-main">GLOBAL</span>
+            <span class="brand-sub">PEST SUPPLIES</span>
+          </div>
+        </a>
+        <p>Professional pest control solutions for homeowners and licensed exterminators worldwide.</p>
+        <div class="footer-socials">
+          <a href="#" class="social-icon" aria-label="Facebook">f</a>
+          <a href="#" class="social-icon" aria-label="Twitter">t</a>
+          <a href="#" class="social-icon" aria-label="Instagram">ig</a>
+          <a href="#" class="social-icon" aria-label="YouTube">yt</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Shop</h5>
+        <ul>
+          <li><a href="https://global-pest-supplies.myshopify.com/collections/all">All Products</a></li>
+          <li><a href="https://global-pest-supplies.myshopify.com/collections/diy-kits">DIY Kits</a></li>
+          <li><a href="https://global-pest-supplies.myshopify.com/collections/baits-traps">Baits &amp; Traps</a></li>
+          <li><a href="https://global-pest-supplies.myshopify.com/collections/concentrates-sprays">Concentrates</a></li>
+          <li><a href="https://global-pest-supplies.myshopify.com/collections/best-sellers">Best Sellers</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Professional</h5>
+        <ul>
+          <li><a href="https://global-pest-supplies.myshopify.com/collections/professional-supplies">Pro Supplies</a></li>
+          <li><a href="https://global-pest-supplies.myshopify.com/products/gps-pro-starter-bundle">Starter Bundle</a></li>
+          <li><a href="dashboard.html">Pro Dashboard</a></li>
+          <li><a href="https://global-pest-supplies.myshopify.com/blogs/pest-control-guides">Pest Guides</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Support</h5>
+        <ul>
+          <li><a href="https://global-pest-supplies.myshopify.com/pages/contact">Contact Us</a></li>
+          <li><a href="https://global-pest-supplies.myshopify.com/pages/shipping-policy">Shipping</a></li>
+          <li><a href="https://global-pest-supplies.myshopify.com/policies/privacy-policy">Privacy</a></li>
+          <li><a href="https://global-pest-supplies.myshopify.com/pages/terms-of-service">Terms</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Global Pest Supplies. All rights reserved. | EPA Licensed Distributor</p>
+      <div class="footer-phone">📞 <strong>1-800-123-4567</strong> | Mon–Fri 8am–6pm EST</div>
+    </div>
+  </div>
+</footer>
+
+<script src="catalog.js"></script>
+<script src="shopify-storefront.js"></script>
+<script src="main.js"></script>
+</body>
+</html>

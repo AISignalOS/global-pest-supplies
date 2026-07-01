@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Newsletter — Global Pest Supplies</title>
+  <meta name="description" content="Subscribe to the Global Pest Supplies newsletter. Monthly pest control guides, seasonal tips, exclusive deals, and new product alerts — all free.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+</head>
+<body>
+
+<script src="gps-shell.js"></script>
+
+<!-- HERO -->
+<section class="newsletter-hero">
+  <div class="container">
+    <div class="hero-tag" style="display:inline-flex;margin-bottom:20px;">📧 Monthly Newsletter</div>
+    <h1>Pest Control <span style="color:var(--blue-glow)">Delivered</span></h1>
+    <p>Monthly guides from licensed exterminators, seasonal pest alerts, new product launches, and exclusive subscriber-only discounts.</p>
+
+    <div class="newsletter-form-wrap" id="formWrap">
+      <input type="email" id="nlEmail" class="form-control" placeholder="Enter your email address" autocomplete="email">
+      <button class="btn-primary" onclick="handleSubscribe()" style="white-space:nowrap;flex-shrink:0;">Subscribe Free →</button>
+    </div>
+
+    <div id="successMsg" style="display:none;background:rgba(74,222,128,0.12);border:1px solid rgba(74,222,128,0.3);border-radius:10px;padding:18px 28px;color:#4ade80;font-weight:600;margin-top:0;max-width:520px;text-align:left;">
+      ✓ You're subscribed! Check your inbox for a welcome email with your 10% discount code.
+    </div>
+
+    <div class="newsletter-perks">
+      <div class="newsletter-perk">Monthly guides</div>
+      <div class="newsletter-perk">Seasonal alerts</div>
+      <div class="newsletter-perk">Subscriber-only deals</div>
+      <div class="newsletter-perk">No spam, ever</div>
+      <div class="newsletter-perk">Unsubscribe anytime</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT YOU'LL GET -->
+<section class="newsletter-benefits">
+  <div class="container">
+    <h2 class="section-title" style="text-align:center;margin-bottom:40px;">What You'll <span>Get</span></h2>
+    <div class="newsletter-benefit-grid">
+      <div class="newsletter-benefit">
+        <div class="newsletter-benefit-icon">📚</div>
+        <h4>Monthly Pest Guides</h4>
+        <p>Deep-dive articles on specific pests — how they behave, how to eliminate them, and how to keep them gone.</p>
+      </div>
+      <div class="newsletter-benefit">
+        <div class="newsletter-benefit-icon">📅</div>
+        <h4>Seasonal Pest Alerts</h4>
+        <p>We track pest activity by region and time of year. You'll know what's coming before it arrives.</p>
+      </div>
+      <div class="newsletter-benefit">
+        <div class="newsletter-benefit-icon">🏷️</div>
+        <h4>Exclusive Discounts</h4>
+        <p>Subscriber-only promo codes, flash sales, and early access to new product launches.</p>
+      </div>
+      <div class="newsletter-benefit">
+        <div class="newsletter-benefit-icon">🔬</div>
+        <h4>Product Science</h4>
+        <p>How active ingredients work, what to mix, resistance patterns, and professional technique tips.</p>
+      </div>
+      <div class="newsletter-benefit">
+        <div class="newsletter-benefit-icon">⭐</div>
+        <h4>New Product Alerts</h4>
+        <p>Be the first to know about new products, formulations, and kits before they go live.</p>
+      </div>
+      <div class="newsletter-benefit">
+        <div class="newsletter-benefit-icon">🎁</div>
+        <h4>Welcome Gift</h4>
+        <p>New subscribers receive a 10% discount code (on top of any existing sale) for their first order.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAST ISSUES PREVIEW -->
+<section class="section" style="border-top:1px solid var(--border);">
+  <div class="container">
+    <h2 class="section-title" style="margin-bottom:32px;">Recent <span>Issues</span></h2>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
+      <a class="guide-card" href="learn.html">
+        <div class="guide-card-header"><div class="guide-card-pest">🐜</div><span class="guide-card-tag">May 2026</span></div>
+        <div class="guide-card-body">
+          <h4>Ant Season Prep Guide</h4>
+          <p>The 3-step perimeter treatment that blocks ants before they find your kitchen — with product recommendations by region.</p>
+          <div class="guide-read-more"><span>8 min read</span><span style="margin-left:auto;">Read →</span></div>
+        </div>
+      </a>
+      <a class="guide-card" href="learn.html">
+        <div class="guide-card-header"><div class="guide-card-pest">🦟</div><span class="guide-card-tag">April 2026</span></div>
+        <div class="guide-card-body">
+          <h4>Mosquito Season is Coming</h4>
+          <p>Barrier spray timing, larvicide placement, and the standing-water audit that cuts mosquito populations by 80%.</p>
+          <div class="guide-read-more"><span>6 min read</span><span style="margin-left:auto;">Read →</span></div>
+        </div>
+      </a>
+      <a class="guide-card" href="learn.html">
+        <div class="guide-card-header"><div class="guide-card-pest">🐭</div><span class="guide-card-tag">March 2026</span></div>
+        <div class="guide-card-body">
+          <h4>Spring Rodent Pressure</h4>
+          <p>Why rodents get worse in spring and how to set up a station network that stops them at the perimeter.</p>
+          <div class="guide-read-more"><span>7 min read</span><span style="margin-left:auto;">Read →</span></div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- SIGN UP AGAIN AT BOTTOM -->
+<section style="background:var(--navy-mid);border-top:1px solid var(--border);padding:64px 0;text-align:center;">
+  <div class="container">
+    <h2 class="section-title" style="text-align:center;">Ready to subscribe?</h2>
+    <p style="color:rgba(255,255,255,0.7);margin-bottom:28px;max-width:420px;margin-left:auto;margin-right:auto;">Join 12,000+ pest control professionals and homeowners. Free forever.</p>
+    <div class="newsletter-form-wrap" style="max-width:460px;" id="formWrap2">
+      <input type="email" id="nlEmail2" class="form-control" placeholder="Enter your email address" autocomplete="email">
+      <button class="btn-primary" onclick="handleSubscribe2()" style="white-space:nowrap;flex-shrink:0;">Subscribe →</button>
+    </div>
+    <p style="font-size:0.78rem;color:var(--text-muted);margin-top:14px;">No spam. Unsubscribe at any time. We respect your privacy.</p>
+  </div>
+</section>
+
+<script src="catalog.js"></script>
+<script src="shopify-storefront.js"></script>
+<script src="main.js"></script>
+<script>
+function handleSubscribe() {
+  const email = document.getElementById('nlEmail').value.trim();
+  if (!email || !/\S+@\S+\.\S+/.test(email)) {
+    document.getElementById('nlEmail').style.borderColor = '#f87171';
+    document.getElementById('nlEmail').focus();
+    return;
+  }
+  document.getElementById('formWrap').style.display = 'none';
+  document.getElementById('successMsg').style.display = 'block';
+  /* In production, POST to Shopify newsletter or Mailchimp */
+  console.log('[GPS] Newsletter signup:', email);
+}
+
+function handleSubscribe2() {
+  const email = document.getElementById('nlEmail2').value.trim();
+  if (!email || !/\S+@\S+\.\S+/.test(email)) {
+    document.getElementById('nlEmail2').style.borderColor = '#f87171';
+    return;
+  }
+  document.getElementById('formWrap2').innerHTML = '<div style="color:#4ade80;font-weight:600;padding:14px;">✓ Subscribed! Welcome email on its way.</div>';
+  console.log('[GPS] Newsletter signup:', email);
+}
+</script>
+</body>
+</html>

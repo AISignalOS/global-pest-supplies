@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Best Sellers — Global Pest Supplies</title>
+  <meta name="description" content="Our most popular pest control products. Top-rated by homeowners and professionals. Shop the best-selling concentrates, kits, baits, and traps.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+</head>
+<body>
+
+<script src="gps-shell.js"></script>
+
+<div class="page-hero">
+  <div class="container">
+    <div class="page-hero-breadcrumb"><a href="index.html">Home</a> / Best Sellers</div>
+    <div class="hero-tag" style="margin-bottom:16px;">⭐ Community Favorites</div>
+    <h1>Best <span style="color:var(--blue-glow)">Sellers</span></h1>
+    <p>The products pest control professionals and homeowners rely on most — proven in the field, backed by thousands of applications.</p>
+  </div>
+</div>
+
+<!-- RATING SUMMARY -->
+<section style="background:var(--navy-mid);border-bottom:1px solid var(--border);padding:36px 0;">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 2fr;gap:48px;align-items:center;max-width:720px;margin:0 auto;">
+      <div style="text-align:center;">
+        <div style="font-size:4rem;font-weight:800;color:var(--white);line-height:1;">4.8</div>
+        <div class="stars" style="font-size:1.4rem;justify-content:center;margin:6px 0;">★★★★★</div>
+        <div style="font-size:0.85rem;color:var(--text-muted);">Average rating</div>
+        <div style="font-size:0.8rem;color:var(--text-muted);margin-top:4px;">Based on 2,400+ reviews</div>
+      </div>
+      <div>
+        <div class="rating-bar"><span class="rating-bar-label">5★</span><div class="rating-bar-track"><div class="rating-bar-fill" style="width:72%"></div></div><span class="rating-bar-count">1,728</span></div>
+        <div class="rating-bar"><span class="rating-bar-label">4★</span><div class="rating-bar-track"><div class="rating-bar-fill" style="width:20%"></div></div><span class="rating-bar-count">480</span></div>
+        <div class="rating-bar"><span class="rating-bar-label">3★</span><div class="rating-bar-track"><div class="rating-bar-fill" style="width:5%"></div></div><span class="rating-bar-count">120</span></div>
+        <div class="rating-bar"><span class="rating-bar-label">2★</span><div class="rating-bar-track"><div class="rating-bar-fill" style="width:2%"></div></div><span class="rating-bar-count">48</span></div>
+        <div class="rating-bar"><span class="rating-bar-label">1★</span><div class="rating-bar-track"><div class="rating-bar-fill" style="width:1%"></div></div><span class="rating-bar-count">24</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BEST SELLER PRODUCTS -->
+<section class="section" style="padding-top:48px;">
+  <div class="container">
+    <div class="section-header" style="margin-bottom:24px;">
+      <h2 class="section-title" style="margin-bottom:0;">Top <span>Products</span></h2>
+      <a href="products.html" class="btn-outline-blue">See Full Catalog →</a>
+    </div>
+    <div class="product-grid" id="bestsellersGrid"></div>
+  </div>
+</section>
+
+<!-- CUSTOMER REVIEWS -->
+<section class="section" style="background:var(--navy-mid);border-top:1px solid var(--border);">
+  <div class="container">
+    <h2 class="section-title" style="margin-bottom:32px;">What <span>Customers Say</span></h2>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;" id="reviewsGrid"></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section" style="padding:64px 0;text-align:center;">
+  <div class="container">
+    <h2 class="section-title" style="text-align:center;">Not sure where to start?</h2>
+    <p style="color:rgba(255,255,255,0.7);margin-bottom:32px;max-width:460px;margin-left:auto;margin-right:auto;">Answer 3 questions and get a personalized product recommendation in under 60 seconds.</p>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+      <a href="index.html#pest-finder" class="btn-primary">🔍 Find My Solution →</a>
+      <a href="shop-by-pest.html" class="btn-secondary">Shop by Pest</a>
+    </div>
+  </div>
+</section>
+
+<script src="catalog.js"></script>
+<script src="shopify-storefront.js"></script>
+<script src="main.js"></script>
+<script>
+const REVIEWS = [
+  { name:'Marcus T.', initials:'MT', date:'March 2026', stars:5, product:'Defender 7.9 Concentrate', text:'Absolutely destroyed the ant problem we had around our foundation. One treatment and they were gone in 48 hours. I diluted it at 1oz per gallon and sprayed the whole perimeter. Smells great, dries fast.' },
+  { name:'Sandra K.', initials:'SK', date:'February 2026', stars:5, product:'Complete Ant Control Kit', text:"This kit is legit. I've had pest companies come out every quarter for 3 years and the ants always come back. Used this kit once, followed the plan, and it's been 4 months with zero activity. Worth every penny." },
+  { name:'Derek M.', initials:'DM', date:'March 2026', stars:5, product:'RoachOut Gel Bait', text:'German roaches in my restaurant kitchen — nightmare. My pest tech friend recommended indoxacarb bait specifically. Applied it Monday, by Thursday I was finding dead roaches. Two weeks later, zero sightings.' },
+  { name:'Lisa P.', initials:'LP', date:'January 2026', stars:5, product:'Mosquito Yard Defense Kit', text:"We live in Florida — mosquitoes are brutal. This kit changed our summer. Did the barrier spray treatment around the whole yard, placed the Bti dunks in the bird bath. Outdoor dining is back on the table." },
+  { name:'Tom R.', initials:'TR', date:'February 2026', stars:4, product:'Bed Bug Elimination Kit', text:"Found bed bugs in my son's dorm mattress. Ordered this kit same day. Followed the 3-step plan over 2 weekends. The encasements are great quality. Took the full 2 weeks but we got them. Glad I didn't have to call an exterminator for $1,800." },
+  { name:'Rachel W.', initials:'RW', date:'March 2026', stars:5, product:'Guardian Bait Station (2-pk)', text:"Clean design, easy to lock and place. Put them along the garage wall and under the deck. Caught 3 mice in the first week. These stations are worth it for peace of mind — kids can't get into them, and they're weatherproof." },
+];
+
+document.addEventListener('DOMContentLoaded', () => {
+  const grid = document.getElementById('bestsellersGrid');
+  if (grid) grid.innerHTML = bestSellers().map(p => productCard(p)).join('');
+
+  const reviewsGrid = document.getElementById('reviewsGrid');
+  if (reviewsGrid) {
+    reviewsGrid.innerHTML = REVIEWS.map(r => `
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">${r.initials}</div>
+          <div>
+            <div class="review-author">${r.name}</div>
+            <div class="review-date">${r.date}</div>
+          </div>
+          <span class="review-verified">✓ Verified</span>
+        </div>
+        <div class="stars" style="margin-bottom:10px;">${'★'.repeat(r.stars)}${'☆'.repeat(5-r.stars)}</div>
+        <p class="review-text">"${r.text}"</p>
+        <div class="review-product">Product: ${r.product}</div>
+      </div>`).join('');
+  }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DIY Pest Control Kits — Global Pest Supplies</title>
+  <meta name="description" content="Complete pest control kits for homeowners. Everything you need to eliminate ants, cockroaches, rodents, mosquitoes, and bed bugs — step-by-step plans included.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+</head>
+<body>
+
+<script src="gps-shell.js"></script>
+
+<div class="page-hero">
+  <div class="container">
+    <div class="page-hero-breadcrumb"><a href="index.html">Home</a> / DIY Kits</div>
+    <h1>DIY <span style="color:var(--blue-glow)">Control Kits</span></h1>
+    <p>Professional-strength combinations bundled by pest. Everything you need — spray, bait, dust, and a step-by-step treatment plan.</p>
+    <div class="page-hero-meta">
+      <div class="page-hero-stat"><strong>Save up to 25%</strong> vs. individual products</div>
+      <div class="page-hero-stat"><strong>Step-by-step</strong> plan included</div>
+      <div class="page-hero-stat"><strong>No license</strong> required</div>
+    </div>
+  </div>
+</div>
+
+<!-- WHY DIY WITH GPS -->
+<section style="padding:48px 0;background:var(--navy-mid);border-bottom:1px solid var(--border);">
+  <div class="container">
+    <div class="diy-why-grid">
+      <div class="diy-why-card">
+        <div class="diy-why-icon">🏆</div>
+        <h4>Pro-Grade Products</h4>
+        <p>The same chemicals professionals use — available without a license for DIY use.</p>
+      </div>
+      <div class="diy-why-card">
+        <div class="diy-why-icon">💰</div>
+        <h4>Save Up to 25%</h4>
+        <p>Bundled kits are priced lower than buying each product individually.</p>
+      </div>
+      <div class="diy-why-card">
+        <div class="diy-why-icon">📋</div>
+        <h4>Step-by-Step Plan</h4>
+        <p>Every kit includes a professional treatment plan with timing and placement guides.</p>
+      </div>
+      <div class="diy-why-card">
+        <div class="diy-why-icon">🚚</div>
+        <h4>Fast Shipping</h4>
+        <p>Same-day dispatch on orders before 2PM. Free shipping on orders over $75.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KIT FILTER TABS -->
+<section class="section" style="padding-top:48px;">
+  <div class="container">
+
+    <div class="pest-tabs-wrapper" style="margin-bottom:32px;">
+      <div class="pest-tabs" role="tablist">
+        <button class="pest-tab active" data-filter="all" onclick="filterKits('all', this)">All Kits</button>
+        <button class="pest-tab" data-filter="ants" onclick="filterKits('ants', this)"><span class="pest-tab-icon">🐜</span> Ants</button>
+        <button class="pest-tab" data-filter="cockroaches" onclick="filterKits('cockroaches', this)"><span class="pest-tab-icon">🪳</span> Roaches</button>
+        <button class="pest-tab" data-filter="rodents" onclick="filterKits('rodents', this)"><span class="pest-tab-icon">🐭</span> Rodents</button>
+        <button class="pest-tab" data-filter="mosquitoes" onclick="filterKits('mosquitoes', this)"><span class="pest-tab-icon">🦟</span> Mosquitoes</button>
+        <button class="pest-tab" data-filter="bedbugs" onclick="filterKits('bedbugs', this)"><span class="pest-tab-icon">🛏️</span> Bed Bugs</button>
+      </div>
+    </div>
+
+    <!-- Kit Detail Cards -->
+    <div class="product-grid" id="kitsDetailGrid" style="grid-template-columns:repeat(3,1fr);gap:24px;"></div>
+
+  </div>
+</section>
+
+<!-- INDIVIDUAL PRODUCTS CTA -->
+<section class="section" style="background:var(--navy-mid);border-top:1px solid var(--border);">
+  <div class="container" style="text-align:center;">
+    <div class="hero-tag" style="display:inline-flex;margin-bottom:16px;">🛠️ Mix &amp; Match</div>
+    <h2 class="section-title">Need Just One Product?</h2>
+    <p style="color:rgba(255,255,255,0.7);margin-bottom:32px;max-width:500px;margin-left:auto;margin-right:auto;">Browse our full catalog to pick individual products. Concentrates, baits, dusts, equipment — all professional grade.</p>
+    <a href="products.html" class="btn-primary">Browse All Products →</a>
+  </div>
+</section>
+
+<script src="catalog.js"></script>
+<script src="shopify-storefront.js"></script>
+<script src="main.js"></script>
+<script>
+const KIT_HANDLES = ['gps-ant-kit','gps-roach-kit','gps-rodent-kit','gps-mosquito-kit','gps-bed-bug-kit','gps-pro-starter-bundle'];
+
+const KIT_INCLUDES = {
+  'gps-ant-kit':          ['Perimeter Spray','Gel Bait (2 syringes)','12 Monitoring Stations','Treatment Plan'],
+  'gps-roach-kit':        ['Gel Bait (4 tips)','Insecticide Dust','IGR Aerosol','Glue Board Monitors'],
+  'gps-rodent-kit':       ['Bait Station (2-pk)','Bait Blocks (4 lb)','Snap Traps (6-pk)','Glue Boards (6-pk)'],
+  'gps-mosquito-kit':     ['Yard Barrier Concentrate','Larvicide Dunks (6)','1-Gal Pump Sprayer','Coverage Map'],
+  'gps-bed-bug-kit':      ['Ready-to-Use Spray','Insecticide Dust','Aerosol Crack Treatment','Mattress Encasements'],
+  'gps-pro-starter-bundle':['Pro Concentrate (Gal)','Hand Duster','Pump Sprayer','Roach Gel','Ant Bait','Route Kit'],
+};
+
+document.addEventListener('DOMContentLoaded', () => renderKitCards('all'));
+
+function renderKitCards(filter) {
+  const grid = document.getElementById('kitsDetailGrid');
+  if (!grid) return;
+
+  let kits = KIT_HANDLES.map(h => byHandle(h)).filter(Boolean);
+  if (filter !== 'all') kits = kits.filter(k => k.pests.includes(filter));
+
+  if (!kits.length) {
+    grid.innerHTML = '<p style="color:var(--text-muted);grid-column:1/-1;text-align:center;padding:40px;">No kits found for this pest. <a href="shop-by-pest.html?pest=' + filter + '" style="color:var(--blue-glow)">View individual products →</a></p>';
+    return;
+  }
+
+  grid.innerHTML = kits.map(p => {
+    const sale = p.was > p.price;
+    const includes = KIT_INCLUDES[p.h] || [];
+    return `
+    <article class="kit-detail-card">
+      <a class="kit-detail-img" href="${p.url}" style="display:block;">
+        ${p.best ? '<span class="pcard-badge">Best Seller</span>' : ''}
+        ${sale ? `<span class="pcard-save">Save $${(p.was - p.price).toFixed(2)}</span>` : ''}
+        <img src="${p.img}" alt="${p.name}" loading="lazy" width="400" height="300">
+      </a>
+      <div class="kit-detail-body">
+        <a class="pcard-name" href="${p.url}" style="display:block;font-size:1.05rem;">${p.name}</a>
+        <p class="pcard-blurb" style="margin:6px 0 10px;">${p.blurb}</p>
+        <div class="kit-what-inside">What's Included:</div>
+        <div class="kit-includes">
+          ${includes.map(i => `<span class="kit-include-tag">✓ ${i}</span>`).join('')}
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:4px;">
+          <div class="pcard-price">
+            $${p.price.toFixed(2)}
+            ${sale ? `<span class="pcard-was">$${p.was.toFixed(2)}</span>` : ''}
+          </div>
+          <button class="btn-shop" onclick="addToCart('${p.v}', this)">Add to Cart</button>
+        </div>
+      </div>
+    </article>`;
+  }).join('');
+}
+
+function filterKits(filter, btn) {
+  document.querySelectorAll('.pest-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  renderKitCards(filter);
+}
+</script>
+</body>
+</html>

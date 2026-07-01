@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="42%" r="75%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="60%" stop-color="#eef2f7"/>
+      <stop offset="100%" stop-color="#d8e0ea"/>
+    </radialGradient>
+    <linearGradient id="capG" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2b3a52"/><stop offset="50%" stop-color="#13233d"/><stop offset="100%" stop-color="#0a1628"/>
+    </linearGradient>
+    <linearGradient id="blueCap" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#4d8bff"/><stop offset="50%" stop-color="#1E6BFF"/><stop offset="100%" stop-color="#0d4fd6"/>
+    </linearGradient>
+    <linearGradient id="bodyL" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#cfd8e4"/><stop offset="18%" stop-color="#ffffff"/><stop offset="50%" stop-color="#f3f6fa"/><stop offset="82%" stop-color="#ffffff"/><stop offset="100%" stop-color="#c4cedd"/>
+    </linearGradient>
+    <linearGradient id="amber" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#a8741f"/><stop offset="20%" stop-color="#f0c97a"/><stop offset="50%" stop-color="#d9a23f"/><stop offset="82%" stop-color="#f0c97a"/><stop offset="100%" stop-color="#9c6a1a"/>
+    </linearGradient>
+    <linearGradient id="kraft" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#b8843f"/><stop offset="20%" stop-color="#e8c089"/><stop offset="50%" stop-color="#d2a05f"/><stop offset="82%" stop-color="#e8c089"/><stop offset="100%" stop-color="#ad7a36"/>
+    </linearGradient>
+    <linearGradient id="cardboard" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#cbb187"/><stop offset="15%" stop-color="#efe0c4"/><stop offset="50%" stop-color="#e2cda3"/><stop offset="85%" stop-color="#efe0c4"/><stop offset="100%" stop-color="#c4a87c"/>
+    </linearGradient>
+    <linearGradient id="redbody" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#7a1226"/><stop offset="20%" stop-color="#e23a55"/><stop offset="50%" stop-color="#b51e38"/><stop offset="82%" stop-color="#e23a55"/><stop offset="100%" stop-color="#6e1020"/>
+    </linearGradient>
+    <radialGradient id="hl" cx="35%" cy="22%" r="60%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.85"/><stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="14" stdDeviation="18" flood-color="#0a1628" flood-opacity="0.22"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <ellipse cx="600" cy="1000" rx="280" ry="48" fill="#0a1628" opacity="0.16"/>
+  
+    <g transform="rotate(-18 600 560)">
+      <rect x="300" y="500" width="470" height="120" rx="26" fill="url(#bodyL)" stroke="#b9c4d4" stroke-width="2"/>
+      <rect x="300" y="500" width="470" height="46" rx="20" fill="url(#hl)"/>
+      <rect x="760" y="520" width="120" height="80" rx="14" fill="url(#capG)"/>
+      <path d="M880 545 l70 13 v14 l-70 13z" fill="#1b2c47"/>
+      <rect x="250" y="515" width="60" height="90" rx="10" fill="url(#blueCap)"/>
+      <rect x="210" y="535" width="46" height="50" rx="8" fill="url(#capG)"/>
+      <rect x="330" y="528" width="300" height="64" rx="10" fill="#C2410C" opacity="0.92"/>
+    </g>
+    
+  <g font-family="'Segoe UI',Arial,sans-serif">
+    <rect x="360" y="660" width="480" height="170" rx="10" fill="#ffffff" stroke="#C2410C" stroke-width="2"/>
+    <rect x="360" y="660" width="480" height="6" rx="3" fill="#C2410C"/>
+    <text x="600" y="690" text-anchor="middle" fill="#C2410C" font-size="13" font-weight="700" letter-spacing="3">GLOBAL PEST SUPPLIES</text>
+    <text x="600" y="722" text-anchor="middle" fill="#0A1628" font-size="27" font-weight="800" letter-spacing="0.5">ANTSTOP</text>
+    <text x="600" y="744" text-anchor="middle" fill="#5A6B85" font-size="14" font-weight="600">Sweet &amp; Protein Gel</text>
+    <line x1="384" y1="760" x2="816" y2="760" stroke="#C2410C" stroke-opacity="0.3" stroke-width="1"/>
+    <text x="600" y="782" text-anchor="middle" fill="#0A1628" font-size="14" font-weight="700">Imidacloprid 0.05%</text>
+    <rect x="556" y="800" width="88" height="22" rx="11" fill="#C2410C"/>
+    <text x="600" y="815" text-anchor="middle" fill="#fff" font-size="13" font-weight="800" letter-spacing="1">30 G</text>
+  </g>
+</svg>

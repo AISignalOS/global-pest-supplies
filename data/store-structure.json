@@ -1,0 +1,72 @@
+{
+  "_meta": {
+    "brand": "Global Pest Supplies",
+    "purpose": "Collection taxonomy, navigation, filters, and homepage layout for the native Shopify store."
+  },
+  "collections": [
+    { "handle": "shop-by-pest", "title": "Shop by Pest", "type": "menu-parent", "seo_title": "Shop Pest Control by Pest | Global Pest Supplies", "description": "Find the exact products to eliminate your pest problem — organized by the pest you're fighting." },
+    { "handle": "ants", "title": "Ant Control", "type": "smart", "rule": "tag = ant", "seo_title": "Ant Control Products — Baits, Sprays & Kits", "seo_description": "Eliminate ant colonies for good with gel baits, perimeter concentrates, and complete ant kits. Works on Argentine, carpenter, odorous house & pavement ants." },
+    { "handle": "cockroaches", "title": "Cockroach Control", "type": "smart", "rule": "tag = cockroach", "seo_title": "Cockroach Control — Gel Baits, Dust & Kits", "seo_description": "Professional roach gel baits, void dusts, and complete kits that kill the colony. Targets German, American, and Oriental roaches." },
+    { "handle": "rodents", "title": "Rodent Control", "type": "smart", "rule": "tag = rodent", "seo_title": "Rat & Mouse Control — Traps, Bait & Stations", "seo_description": "Tamper-resistant bait stations, bait blocks, snap traps & glue boards for rats and mice. Child- and pet-safe options." },
+    { "handle": "mosquitoes", "title": "Mosquito Control", "type": "smart", "rule": "tag = mosquito", "seo_title": "Mosquito Control — Yard Sprays, Larvicide & Kits", "seo_description": "Take back your yard with barrier concentrates, Bti larvicide dunks, and complete mosquito kits for season-long control." },
+    { "handle": "termites", "title": "Termite Control", "type": "smart", "rule": "tag = termite", "seo_title": "Termite Control — Foam & In-Ground Bait Systems", "seo_description": "Fipronil foam and in-ground baiting systems to detect and eliminate subterranean termite and carpenter ant colonies." },
+    { "handle": "bed-bugs", "title": "Bed Bug Control", "type": "smart", "rule": "tag = bed-bug", "seo_title": "Bed Bug Treatment Kits, Sprays & Dust", "seo_description": "Complete bed bug elimination kits, residual sprays, dusts, encasements & interceptors — everything to treat a full room." },
+    { "handle": "fleas-ticks", "title": "Flea & Tick Control", "type": "smart", "rule": "tag = flea OR tag = tick", "seo_title": "Flea & Tick Control — IGR Concentrates & Kits", "seo_description": "Stop fleas at every life stage with adulticide + IGR concentrates for carpets, yards, and pet areas." },
+    { "handle": "wasps-spiders", "title": "Wasps & Spiders", "type": "smart", "rule": "tag = wasp OR tag = spider", "seo_title": "Wasp, Hornet & Spider Control Sprays", "seo_description": "Long-reach wasp & hornet jet sprays and long-residual spider & scorpion concentrates." },
+
+    { "handle": "diy-kits", "title": "DIY Kits", "type": "smart", "rule": "tag = kit AND tier = DIY", "seo_title": "Complete DIY Pest Control Kits", "seo_description": "All-in-one kits that bundle everything you need to solve a pest problem — bait, spray, traps, and a step-by-step plan." },
+    { "handle": "professional", "title": "Professional Supplies", "type": "smart", "rule": "tier = Professional", "seo_title": "Professional Pest Control Supplies & Equipment", "seo_description": "Pro-grade concentrates, baiting systems, and equipment used by licensed exterminators — at a fraction of service cost." },
+    { "handle": "concentrates", "title": "Concentrates & Sprays", "type": "smart", "rule": "product_type = Insecticide Concentrate OR product_type = Ready-to-Use Spray", "seo_title": "Insecticide Concentrates & Ready-to-Use Sprays", "seo_description": "Broad-spectrum concentrates and ready-to-use sprays for indoor and outdoor pest control." },
+    { "handle": "baits-traps", "title": "Baits & Traps", "type": "smart", "rule": "product_type = Gel Bait OR product_type = Bait Station OR product_type = Trap OR product_type = Bait System", "seo_title": "Pest Baits, Bait Stations & Traps", "seo_description": "Gel baits, tamper-resistant stations, snap traps, glue boards & light traps for targeted pest control." },
+    { "handle": "equipment", "title": "Equipment", "type": "smart", "rule": "product_type = Equipment", "seo_title": "Pest Control Application Equipment", "seo_description": "Sprayers, dusters, and application tools for applying concentrates and dusts accurately." },
+    { "handle": "natural-organic", "title": "Natural & Pet-Safe", "type": "smart", "rule": "tag = natural OR tag = pet-safe", "seo_title": "Natural & Pet-Safe Pest Control", "seo_description": "Chemical-free and pet-safe options like diatomaceous earth and Bti larvicide for households that prefer a gentler approach." },
+    { "handle": "best-sellers", "title": "Best Sellers", "type": "smart", "rule": "tag = best-seller", "seo_title": "Best-Selling Pest Control Products", "seo_description": "Our most popular pest control products, trusted by homeowners and pros alike." }
+  ],
+  "main_menu": [
+    { "title": "Shop by Pest", "link": "/collections/shop-by-pest", "children": [
+      { "title": "Ants", "link": "/collections/ants" },
+      { "title": "Cockroaches", "link": "/collections/cockroaches" },
+      { "title": "Rodents", "link": "/collections/rodents" },
+      { "title": "Mosquitoes", "link": "/collections/mosquitoes" },
+      { "title": "Termites", "link": "/collections/termites" },
+      { "title": "Bed Bugs", "link": "/collections/bed-bugs" },
+      { "title": "Fleas & Ticks", "link": "/collections/fleas-ticks" },
+      { "title": "Wasps & Spiders", "link": "/collections/wasps-spiders" }
+    ]},
+    { "title": "Products", "link": "/collections/all", "children": [
+      { "title": "Concentrates & Sprays", "link": "/collections/concentrates" },
+      { "title": "Baits & Traps", "link": "/collections/baits-traps" },
+      { "title": "Equipment", "link": "/collections/equipment" },
+      { "title": "Natural & Pet-Safe", "link": "/collections/natural-organic" }
+    ]},
+    { "title": "DIY Kits", "link": "/collections/diy-kits" },
+    { "title": "Professional", "link": "/collections/professional" },
+    { "title": "Learn", "link": "/blogs/pest-control-guides" }
+  ],
+  "footer_menu": [
+    { "group": "Shop", "links": ["Best Sellers", "DIY Kits", "Professional", "Concentrates", "Baits & Traps", "Equipment"] },
+    { "group": "Learn", "links": ["Pest Control Guides (Blog)", "Pest ID Library", "How-To Videos", "Safety & Labels"] },
+    { "group": "Support", "links": ["Contact Us", "Shipping & Returns", "FAQ", "Track Order"] },
+    { "group": "Company", "links": ["About Us", "Reviews", "Wholesale / Pro Accounts", "Privacy Policy"] }
+  ],
+  "storefront_filters": [
+    { "label": "Pest", "source": "tag", "values": ["ants", "cockroaches", "rodents", "mosquitoes", "termites", "bed-bug", "fleas", "wasps", "spiders"] },
+    { "label": "Product Type", "source": "product_type", "values": ["Concentrate", "Gel Bait", "Bait Station", "Trap", "Dust", "Kit", "Equipment", "Larvicide", "Granule"] },
+    { "label": "Tier", "source": "tag", "values": ["DIY", "Professional"] },
+    { "label": "Price", "source": "price", "ranges": ["Under $25", "$25–$50", "$50–$100", "$100+"] },
+    { "label": "Features", "source": "tag", "values": ["best-seller", "natural", "pet-safe", "indoor", "outdoor", "long-residual"] }
+  ],
+  "homepage_sections": [
+    "Announcement bar (free shipping over $75 + new-customer email offer)",
+    "Hero — globe/network brand visual, headline, 'Shop by Pest' + 'Find My Solution' CTAs",
+    "Shop by Pest grid (8 pest tiles with icons)",
+    "Best Sellers carousel",
+    "Pest Finder quiz CTA (interactive solution finder)",
+    "DIY vs Professional split banner",
+    "Featured Kits (Ant, Roach, Rodent, Mosquito, Bed Bug)",
+    "Why Global Pest Supplies (pro-grade, save 70% vs exterminator, fast shipping, expert support)",
+    "From the Blog (3 latest guides)",
+    "Email signup (10% off first order)",
+    "Trust bar (secure checkout, reviews, satisfaction guarantee)"
+  ]
+}
