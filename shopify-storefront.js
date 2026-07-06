@@ -130,12 +130,20 @@ window.addToCart = async function (variantId, btnEl) {
 
   if (btnEl) {
     btnEl.textContent = '✓ Added!';
-    btnEl.style.background = '#16a34a';
+    btnEl.classList.add('added');
     setTimeout(() => {
       btnEl.textContent = 'Add to Cart';
-      btnEl.style.background = '';
+      btnEl.classList.remove('added');
       btnEl.disabled = false;
     }, 1800);
+  }
+
+  // pulse the nav cart so the add is visible from anywhere on the page
+  const navCart = document.querySelector('.nav-cart');
+  if (navCart) {
+    navCart.classList.remove('bump');
+    void navCart.offsetWidth; // restart the animation
+    navCart.classList.add('bump');
   }
 };
 

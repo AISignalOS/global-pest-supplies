@@ -147,6 +147,10 @@ const GPS_FOOTER_HTML = `
         </ul>
       </div>
     </div>
+    <div class="footer-safety" style="margin-top:28px;margin-bottom:0;">
+      <span aria-hidden="true">⚠️</span>
+      <span><strong>Product safety:</strong> Always read and follow label directions. Use pest control products only as directed, store them away from children and pets, and check your state's regulations before purchasing restricted items.</span>
+    </div>
     <div class="footer-bottom">
       <p>© 2026 Global Pest Supplies. All rights reserved. | EPA Licensed Distributor</p>
       <div class="footer-phone">📞 <strong>1-800-123-4567</strong> | Mon–Fri 8am–6pm EST</div>
@@ -159,6 +163,15 @@ const GPS_FOOTER_HTML = `
   const navWrapper = document.createElement('div');
   navWrapper.innerHTML = GPS_NAV_HTML;
   document.body.insertBefore(navWrapper, document.body.firstChild);
+
+  /* Pest-radar cursor on inner pages (decorative; script no-ops on
+     touch devices and for prefers-reduced-motion) */
+  if (!document.querySelector('script[src="custom-cursor.js"]')) {
+    const cursorScript = document.createElement('script');
+    cursorScript.src = 'custom-cursor.js';
+    cursorScript.defer = true;
+    document.head.appendChild(cursorScript);
+  }
 
   /* Inject footer at end — deferred to DOMContentLoaded because this
      script runs immediately after <body> opens, before the rest of the

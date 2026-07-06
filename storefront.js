@@ -52,17 +52,20 @@
     track.innerHTML = bestSellers().map(p => `<div class="carousel-item">${productCard(p)}</div>`).join('');
   }
 
-  // ---- Pest Control Guides (links to live blog) ----
+  // ---- Field Guides (digital briefing files → live blog) ----
   function renderGuides() {
     const grid = $('#guidesGrid');
     if (!grid || typeof GUIDES === 'undefined') return;
-    grid.innerHTML = GUIDES.map(g => `
-      <a class="edu-card" href="${BLOG}/${g.h}">
-        <div class="edu-card-body">
-          <span class="edu-tag">${g.pest}</span>
+    grid.innerHTML = GUIDES.map((g, i) => `
+      <a class="guide-file" href="${BLOG}/${g.h}">
+        <div class="guide-file-tab" aria-hidden="true">
+          <span class="guide-file-id">FIELD GUIDE&nbsp;//&nbsp;${String(i + 1).padStart(2, '0')}</span>
+          <span class="guide-file-pest">${g.pest}</span>
+        </div>
+        <div class="guide-file-body">
           <h4>${g.title}</h4>
           <p>${g.blurb}</p>
-          <p style="color:var(--blue-glow);font-weight:600;margin-top:10px;">Read guide →</p>
+          <span class="guide-file-open">Open briefing →</span>
         </div>
       </a>`).join('');
   }

@@ -77,7 +77,24 @@ function byPest(pest)  { return CATALOG.filter(p => p.pests.includes(pest)); }
 function bestSellers() { return CATALOG.filter(p => p.best); }
 function byHandle(h)   { return CATALOG.find(p => p.h === h); }
 
-/* Card markup — image links to product page, button adds to the live cart */
+/* Product-type badge derived from the handle (Kit / Concentrate / Bait / …) */
+function productType(p) {
+  const h = p.h;
+  if (/-kit$|bundle/.test(h))            return 'Kit';
+  if (/bait-system/.test(h))             return 'Bait System';
+  if (/concentrate/.test(h))             return 'Concentrate';
+  if (/gel-bait|bait-station|bait-block/.test(h)) return 'Bait';
+  if (/granular/.test(h))                return 'Granules';
+  if (/dust\b|-dust/.test(h))            return 'Dust';
+  if (/diatomaceous/.test(h))            return 'Powder';
+  if (/spray|foam|dunks/.test(h))        return 'Spray';
+  if (/trap|glue/.test(h))               return 'Trap';
+  if (/sprayer|duster/.test(h))          return 'Equipment';
+  return 'Supply';
+}
+
+/* Card markup — "tactical supply card": image links to product page,
+   button adds to the live cart. Styling lives in styles.css (.pcard). */
 function productCard(p, opts = {}) {
   const sale   = p.was > p.price;
   const pro    = typeof isProUser === 'function' && isProUser();
@@ -86,11 +103,12 @@ function productCard(p, opts = {}) {
   const bundlePct = p.bundleValue ? Math.round((p.bundleValue - p.price) / p.bundleValue * 100) : 0;
 
   return `
-  <article class="pcard">
+  <article class="pcard" data-tier="${p.tier}">
+    <span class="pcard-frame" aria-hidden="true"></span>
     <a class="pcard-img" href="${p.url}" aria-label="${p.name}">
       ${p.best ? '<span class="pcard-badge">Best Seller</span>' : ''}
-      ${bundlePct > 0 ? `<span class="pcard-bundle-badge">Save ${bundlePct}% as a kit</span>` : (sale ? `<span class="pcard-save">Save ${money(p.was - p.price)}</span>` : '')}
-      <img src="${p.img}" alt="${p.name}" loading="lazy" width="300" height="300">
+      ${bundlePct > 0 ? `<span class="pcard-bundle-badge">Kit −${bundlePct}%</span>` : (sale ? `<span class="pcard-save">Save ${money(p.was - p.price)}</span>` : '')}
+      <img src="${p.img}" alt="${p.name} — ${p.tier} pest control ${productType(p).toLowerCase()}" loading="lazy" width="300" height="300">
     </a>
     <div class="pcard-body">
       <a class="pcard-name" href="${p.url}">${p.name}</a>
@@ -98,7 +116,10 @@ function productCard(p, opts = {}) {
       ${p.ai ? `<div class="pcard-mfields"><span><strong>AI:</strong> ${p.ai}</span><span><strong>Yield:</strong> ${p.yld}</span></div>` : ''}
       <div class="pcard-meta">
         <div class="stars" title="${p.rating} / 5">${stars(p.rating)}</div>
-        <span class="pcard-tier">${p.tier}</span>
+        <span style="display:flex;gap:5px;">
+          <span class="pcard-type">${productType(p)}</span>
+          <span class="pcard-tier${p.tier === 'Professional' ? ' tier-pro' : ''}">${p.tier === 'Professional' ? 'Pro' : p.tier}</span>
+        </span>
       </div>
       ${p.restrictedStates ? `<div class="pcard-restricted">⚠ Restricted in ${p.restrictedStates.join(', ')}</div>` : ''}
       <div class="pcard-foot">
