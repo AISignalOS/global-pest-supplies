@@ -143,11 +143,21 @@
     });
   }
 
+  /* ── Pause hero animations while it's scrolled out of view ───── */
+  function initHeroAnimationPause() {
+    const hero = document.querySelector('.hero');
+    if (!hero || typeof IntersectionObserver === 'undefined') return;
+    new IntersectionObserver(([entry]) => {
+      hero.classList.toggle('anim-paused', !entry.isIntersecting);
+    }, { threshold: 0 }).observe(hero);
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
     renderKitsLoadout();
     initConsoleReadout();
     initCardTilt();
     initTicker();
     initNewsletter();
+    initHeroAnimationPause();
   });
 })();
