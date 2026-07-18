@@ -19,6 +19,8 @@
   ring.setAttribute('aria-hidden', 'true');
 
   var active = false;
+  var mx = -100, my = -100;   // pointer
+  var rx = -100, ry = -100;   // ring (lerps toward pointer for the trail effect)
 
   function attach() {
     document.body.appendChild(dot);
@@ -28,17 +30,18 @@
     var oldGlow = document.getElementById('cursorGlow');
     if (oldGlow) oldGlow.style.display = 'none';
 
-    // both elements track the pointer exactly — no trailing lerp, so the
-    // ring can never drift away from the dot on hover, click, or scroll
+    // dot pins to the pointer; the ring trails via the rAF lerp below and
+    // settles exactly on the pointer when it stops. Lock/press scaling can't
+    // displace either one: scale(var(--gps-s)) sits AFTER the translate, so
+    // it scales in place instead of multiplying the position (see CSS).
     document.addEventListener('mousemove', function (e) {
+      mx = e.clientX; my = e.clientY;
       if (!active) {
         active = true;
         document.documentElement.classList.add('gps-cursor-on');
+        rx = mx; ry = my; // appear at the pointer, don't fly in from off-screen
       }
-      // scale(var(--gps-s)) AFTER the translate so lock/press effects scale the
-      // element in place instead of multiplying its position (see CSS comment)
-      dot.style.transform = 'translate(' + (e.clientX - 3) + 'px,' + (e.clientY - 3) + 'px) scale(var(--gps-s, 1))';
-      ring.style.transform = 'translate(' + (e.clientX - 17) + 'px,' + (e.clientY - 17) + 'px) scale(var(--gps-s, 1))';
+      dot.style.transform = 'translate(' + (mx - 3) + 'px,' + (my - 3) + 'px) scale(var(--gps-s, 1))';
     }, { passive: true });
 
     // hide when the pointer leaves the window
@@ -65,6 +68,13 @@
 
     document.addEventListener('mousedown', function () { ring.classList.add('press'); });
     document.addEventListener('mouseup',   function () { ring.classList.remove('press'); });
+
+    (function loop() {
+      rx += (mx - rx) * 0.22;
+      ry += (my - ry) * 0.22;
+      ring.style.transform = 'translate(' + (rx - 17) + 'px,' + (ry - 17) + 'px) scale(var(--gps-s, 1))';
+      requestAnimationFrame(loop);
+    })();
   }
 
   if (document.body) attach();
