@@ -2288,6 +2288,9 @@ button.btn-disabled,
   position: absolute;
   top: calc(100% + 8px);
   left: 0;
+  /* invisible bridge over the 8px gap so the pointer never leaves the
+     <li> while traveling from the trigger down into the menu */
+  --dropdown-gap: 8px;
   background: rgba(var(--bg-deep-rgb), 0.98);
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -2299,6 +2302,14 @@ button.btn-disabled,
   animation: slideDown 0.18s ease;
 }
 .nav-dropdown.open { display: block; }
+.nav-dropdown::before {
+  content: '';
+  position: absolute;
+  top: calc(-1 * var(--dropdown-gap) - 2px);
+  left: 0;
+  right: 0;
+  height: calc(var(--dropdown-gap) + 2px);
+}
 .nav-dropdown a {
   display: block;
   padding: 10px 18px;

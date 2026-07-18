@@ -18,8 +18,6 @@
   dot.setAttribute('aria-hidden', 'true');
   ring.setAttribute('aria-hidden', 'true');
 
-  var mx = -100, my = -100;   // mouse
-  var rx = -100, ry = -100;   // ring (lerped)
   var active = false;
 
   function attach() {
@@ -30,14 +28,17 @@
     var oldGlow = document.getElementById('cursorGlow');
     if (oldGlow) oldGlow.style.display = 'none';
 
+    // both elements track the pointer exactly — no trailing lerp, so the
+    // ring can never drift away from the dot on hover, click, or scroll
     document.addEventListener('mousemove', function (e) {
-      mx = e.clientX; my = e.clientY;
       if (!active) {
         active = true;
         document.documentElement.classList.add('gps-cursor-on');
-        rx = mx; ry = my;
       }
-      dot.style.transform = 'translate(' + (mx - 3) + 'px,' + (my - 3) + 'px)';
+      // scale(var(--gps-s)) AFTER the translate so lock/press effects scale the
+      // element in place instead of multiplying its position (see CSS comment)
+      dot.style.transform = 'translate(' + (e.clientX - 3) + 'px,' + (e.clientY - 3) + 'px) scale(var(--gps-s, 1))';
+      ring.style.transform = 'translate(' + (e.clientX - 17) + 'px,' + (e.clientY - 17) + 'px) scale(var(--gps-s, 1))';
     }, { passive: true });
 
     // hide when the pointer leaves the window
@@ -53,9 +54,6 @@
       if (e.target.closest && e.target.closest(HOT)) {
         ring.classList.add('lock');
         dot.classList.add('lock');
-        // snap the ring onto the cursor so it doesn't visibly lag behind
-        // while it's also scaling up to the lock size
-        rx = mx; ry = my;
       }
     }, { passive: true });
     document.addEventListener('mouseout', function (e) {
@@ -67,14 +65,6 @@
 
     document.addEventListener('mousedown', function () { ring.classList.add('press'); });
     document.addEventListener('mouseup',   function () { ring.classList.remove('press'); });
-
-    (function loop() {
-      // follow tightly enough that the ring stays visually attached to the dot
-      rx += (mx - rx) * 0.35;
-      ry += (my - ry) * 0.35;
-      ring.style.transform = 'translate(' + (rx - 17) + 'px,' + (ry - 17) + 'px)';
-      requestAnimationFrame(loop);
-    })();
   }
 
   if (document.body) attach();

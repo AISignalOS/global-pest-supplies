@@ -30,13 +30,24 @@ html.gps-cursor-on textarea {
   will-change: transform;
 }
 
+/* Scale must live INSIDE the transform (after the translate) — the separate
+   `scale` property composes as scale∘translate and multiplies the cursor's
+   position, flinging the ring away from the pointer on hover/click.
+   JS writes: transform: translate(x,y) scale(var(--gps-s, 1)).
+   @property registration keeps the scale change animatable. */
+@property --gps-s {
+  syntax: '<number>';
+  inherits: false;
+  initial-value: 1;
+}
+
 .gps-cursor-dot {
   width: 6px;
   height: 6px;
   border-radius: 50%;
   background: var(--blue-glow, #3A8AFF);
   box-shadow: 0 0 8px rgba(30, 107, 255, 0.9);
-  transition: scale 0.15s ease;
+  transition: --gps-s 0.15s ease;
 }
 
 .gps-cursor-ring {
@@ -47,7 +58,7 @@ html.gps-cursor-on textarea {
   box-shadow:
     0 0 12px rgba(30, 107, 255, 0.35),
     inset 0 0 8px rgba(30, 107, 255, 0.18);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease, scale 0.25s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, --gps-s 0.25s ease;
 }
 
 /* radar tick marks on the ring */
@@ -66,17 +77,17 @@ html.gps-cursor-on textarea {
 
 /* lock-on: ring expands + brightens over interactive elements */
 .gps-cursor-ring.lock {
-  scale: 1.45;
+  --gps-s: 1.45;
   border-color: rgba(58, 138, 255, 0.95);
   box-shadow:
     0 0 18px rgba(30, 107, 255, 0.55),
     inset 0 0 10px rgba(30, 107, 255, 0.25);
 }
 .gps-cursor-dot.lock {
-  scale: 0.67;
+  --gps-s: 0.67;
 }
 
-.gps-cursor-ring.press { scale: 0.85; }
+.gps-cursor-ring.press { --gps-s: 0.85; }
 
 /* never on touch / reduced motion (JS already bails, this is belt & braces) */
 @media (pointer: coarse), (prefers-reduced-motion: reduce) {
