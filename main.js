@@ -43,6 +43,8 @@ function initCursorGlow() {
   const lerp = (a, b, t) => a + (b - a) * t;
 
   function animate() {
+    // custom-cursor.js hides the glow when it takes over — stop burning frames
+    if (glow.style.display === 'none') return;
     cx = lerp(cx, mx, 0.1);
     cy = lerp(cy, my, 0.1);
     glow.style.transform = `translate(${cx - 150}px, ${cy - 150}px)`;

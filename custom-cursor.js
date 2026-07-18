@@ -21,6 +21,26 @@
   var active = false;
   var mx = -100, my = -100;   // pointer
   var rx = -100, ry = -100;   // ring (lerps toward pointer for the trail effect)
+  var raf = null;
+
+  // trail lerp that goes idle once the ring converges — no per-frame style
+  // writes while the mouse is still (keeps the page at full framerate)
+  function tick() {
+    var dx = mx - rx, dy = my - ry;
+    if (Math.abs(dx) < 0.3 && Math.abs(dy) < 0.3) {
+      rx = mx; ry = my;
+      ringPos();
+      raf = null;
+      return;
+    }
+    rx += dx * 0.22;
+    ry += dy * 0.22;
+    ringPos();
+    raf = requestAnimationFrame(tick);
+  }
+  function ringPos() {
+    ring.style.transform = 'translate(' + (rx - 17) + 'px,' + (ry - 17) + 'px) scale(var(--gps-s, 1))';
+  }
 
   function attach() {
     document.body.appendChild(dot);
@@ -42,6 +62,7 @@
         rx = mx; ry = my; // appear at the pointer, don't fly in from off-screen
       }
       dot.style.transform = 'translate(' + (mx - 3) + 'px,' + (my - 3) + 'px) scale(var(--gps-s, 1))';
+      if (raf === null) raf = requestAnimationFrame(tick);
     }, { passive: true });
 
     // hide when the pointer leaves the window
@@ -68,13 +89,6 @@
 
     document.addEventListener('mousedown', function () { ring.classList.add('press'); });
     document.addEventListener('mouseup',   function () { ring.classList.remove('press'); });
-
-    (function loop() {
-      rx += (mx - rx) * 0.22;
-      ry += (my - ry) * 0.22;
-      ring.style.transform = 'translate(' + (rx - 17) + 'px,' + (ry - 17) + 'px) scale(var(--gps-s, 1))';
-      requestAnimationFrame(loop);
-    })();
   }
 
   if (document.body) attach();

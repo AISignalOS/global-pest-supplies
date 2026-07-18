@@ -51,7 +51,19 @@
 }
 @keyframes radar-rotate { to { transform: rotate(360deg); } }
 
-/* blueprint grid behind hero copy */
+/* globe network pulse — group-level opacity only, so the filtered SVG
+   rasterizes once and the pulse runs on the compositor (the old per-node
+   SMIL animations forced a full blur re-render every frame) */
+.globe-lines { animation: globe-pulse 3.2s ease-in-out infinite; }
+.globe-nodes { animation: globe-pulse 2.4s ease-in-out infinite reverse; }
+@keyframes globe-pulse {
+  0%, 100% { opacity: 0.55; }
+  50%      { opacity: 1; }
+}
+
+/* blueprint grid behind hero copy — static: animating a full-hero layer
+   (even by transform) was the single biggest frame cost, and the radar
+   sweep + ticker + globe pulse already carry the motion */
 .hero-grid-lines {
   position: absolute;
   inset: 0;
@@ -62,12 +74,18 @@
   background-size: 48px 48px;
   -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 22%, #000 72%, transparent 100%);
           mask-image: linear-gradient(180deg, transparent 0%, #000 22%, #000 72%, transparent 100%);
-  animation: grid-drift 24s linear infinite;
   pointer-events: none;
 }
-@keyframes grid-drift {
-  from { background-position: 0 0, 0 0; }
-  to   { background-position: 48px 96px, 96px 48px; }
+
+/* pause every hero animation while the hero is off-screen
+   (.anim-paused is toggled by an IntersectionObserver in
+   global-pest-interactions.js) */
+.hero.anim-paused .radar-sweep::before,
+.hero.anim-paused .hero-ticker-track,
+.hero.anim-paused .globe-lines,
+.hero.anim-paused .globe-nodes,
+.hero.anim-paused .globe-svg {
+  animation-play-state: paused;
 }
 
 /* pest quick-links under the hero CTAs — instant "what do you treat?" */
@@ -801,6 +819,9 @@
   .pf-radar-sweep,
   .hero-ticker-track,
   .hero-grid-lines,
+  .hero-grid-lines::before,
+  .globe-lines,
+  .globe-nodes,
   .net-route,
   .net-node,
   .net-hub-ring,
