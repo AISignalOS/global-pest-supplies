@@ -1,0 +1,98 @@
+/* ============================================================
+   GPS — Pest-radar cursor (decorative; see custom-cursor.js)
+   Native cursor is hidden ONLY while .gps-cursor-on is set on <html>
+   (i.e. a fine pointer is actually moving). Keyboard and touch
+   users never see or need any of this.
+   ============================================================ */
+
+html.gps-cursor-on,
+html.gps-cursor-on body,
+html.gps-cursor-on a,
+html.gps-cursor-on button,
+html.gps-cursor-on [role="tab"],
+html.gps-cursor-on label,
+html.gps-cursor-on select {
+  cursor: none;
+}
+/* text fields keep the I-beam — precision matters there */
+html.gps-cursor-on input,
+html.gps-cursor-on textarea {
+  cursor: text;
+}
+
+.gps-cursor-dot,
+.gps-cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 99999;
+  will-change: transform;
+}
+
+/* Scale must live INSIDE the transform (after the translate) — the separate
+   `scale` property composes as scale∘translate and multiplies the cursor's
+   position, flinging the ring away from the pointer on hover/click.
+   JS writes: transform: translate(x,y) scale(var(--gps-s, 1)).
+   @property registration keeps the scale change animatable. */
+@property --gps-s {
+  syntax: '<number>';
+  inherits: false;
+  initial-value: 1;
+}
+
+.gps-cursor-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--blue-glow, #3A8AFF);
+  box-shadow: 0 0 8px rgba(30, 107, 255, 0.9);
+  transition: --gps-s 0.15s ease;
+}
+
+.gps-cursor-ring {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(30, 107, 255, 0.65);
+  box-shadow:
+    0 0 12px rgba(30, 107, 255, 0.35),
+    inset 0 0 8px rgba(30, 107, 255, 0.18);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, --gps-s 0.25s ease;
+}
+
+/* radar tick marks on the ring */
+.gps-cursor-ring::before,
+.gps-cursor-ring::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  width: 1.5px;
+  height: 5px;
+  margin-left: -0.75px;
+  background: rgba(30, 107, 255, 0.8);
+}
+.gps-cursor-ring::before { top: -1px; }
+.gps-cursor-ring::after  { bottom: -1px; }
+
+/* lock-on: ring expands + brightens over interactive elements */
+.gps-cursor-ring.lock {
+  --gps-s: 1.45;
+  border-color: rgba(58, 138, 255, 0.95);
+  box-shadow:
+    0 0 18px rgba(30, 107, 255, 0.55),
+    inset 0 0 10px rgba(30, 107, 255, 0.25);
+}
+.gps-cursor-dot.lock {
+  --gps-s: 0.67;
+}
+
+.gps-cursor-ring.press { --gps-s: 0.85; }
+
+/* never on touch / reduced motion (JS already bails, this is belt & braces) */
+@media (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .gps-cursor-dot,
+  .gps-cursor-ring { display: none; }
+  html.gps-cursor-on,
+  html.gps-cursor-on * { cursor: auto; }
+}

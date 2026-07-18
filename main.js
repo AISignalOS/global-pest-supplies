@@ -43,6 +43,8 @@ function initCursorGlow() {
   const lerp = (a, b, t) => a + (b - a) * t;
 
   function animate() {
+    // custom-cursor.js hides the glow when it takes over — stop burning frames
+    if (glow.style.display === 'none') return;
     cx = lerp(cx, mx, 0.1);
     cy = lerp(cy, my, 0.1);
     glow.style.transform = `translate(${cx - 150}px, ${cy - 150}px)`;
@@ -65,10 +67,8 @@ function initNavScroll() {
   window.addEventListener('scroll', () => {
     if (!ticking) {
       requestAnimationFrame(() => {
-        const scrolled = window.scrollY > 60;
-        nav.style.background  = scrolled ? 'rgba(6,12,24,0.98)' : 'rgba(10,22,40,0.92)';
-        nav.style.borderColor = scrolled ? 'rgba(30,107,255,0.4)' : 'rgba(30,107,255,0.22)';
-        nav.style.boxShadow   = scrolled ? '0 4px 32px rgba(0,0,0,0.4)' : 'none';
+        // class-based so both themes style it correctly (see styles.css)
+        nav.classList.toggle('scrolled', window.scrollY > 60);
         ticking = false;
       });
       ticking = true;
@@ -84,17 +84,9 @@ function initMobileMenu() {
   let open = false;
   hamburger.addEventListener('click', () => {
     open = !open;
-    if (open) {
-      links.style.cssText = `
-        display:flex; flex-direction:column; position:fixed;
-        top:64px; left:0; right:0; background:rgba(6,12,24,0.99);
-        padding:16px 24px 24px; border-bottom:1px solid rgba(30,107,255,0.22);
-        backdrop-filter:blur(16px); gap:2px; z-index:999;
-        animation: slideDown 0.22s ease;`;
-    } else {
-      links.style.cssText = '';
-    }
+    links.classList.toggle('mobile-open', open);
     hamburger.classList.toggle('active', open);
+    hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
   });
 }
 
@@ -146,6 +138,11 @@ function initScrollReveal() {
     { sel: '.pro-feature', fx: 'fade-up',   stagger: 0.08 },
     { sel: '.section-title', fx: 'fade-up', stagger: 0    },
     { sel: '.pest-finder-section', fx: 'fade-up', stagger: 0 },
+    { sel: '.path-panel',   fx: 'fade-up',  stagger: 0.12 },
+    { sel: '.kit-loadout-card', fx: 'fade-up', stagger: 0.1 },
+    { sel: '.guide-file',   fx: 'fade-up',  stagger: 0.09 },
+    { sel: '.network-stat', fx: 'fade-up',  stagger: 0.1  },
+    { sel: '.cmd-path',     fx: 'fade-up',  stagger: 0.07 },
   ];
 
   const transforms = {
