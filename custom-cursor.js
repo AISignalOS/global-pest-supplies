@@ -48,11 +48,14 @@
 
     // lock-on state over interactive elements (event delegation so
     // dynamically rendered product cards are covered too)
-    var HOT = 'a, button, [role="tab"], input, select, textarea, .pcard, .pest-tab, .finder-option, .finder-pest-btn, .kit-card, .path-panel';
+    var HOT = 'a, button, [role="tab"], input, select, textarea, .pcard, .pest-tab, .finder-option, .finder-pest-btn, .kit-card, .kit-loadout-card, .path-panel, .guide-file, .cmd-path, .pest-chip, .theme-toggle';
     document.addEventListener('mouseover', function (e) {
       if (e.target.closest && e.target.closest(HOT)) {
         ring.classList.add('lock');
         dot.classList.add('lock');
+        // snap the ring onto the cursor so it doesn't visibly lag behind
+        // while it's also scaling up to the lock size
+        rx = mx; ry = my;
       }
     }, { passive: true });
     document.addEventListener('mouseout', function (e) {
@@ -66,8 +69,9 @@
     document.addEventListener('mouseup',   function () { ring.classList.remove('press'); });
 
     (function loop() {
-      rx += (mx - rx) * 0.18;
-      ry += (my - ry) * 0.18;
+      // follow tightly enough that the ring stays visually attached to the dot
+      rx += (mx - rx) * 0.35;
+      ry += (my - ry) * 0.35;
       ring.style.transform = 'translate(' + (rx - 17) + 'px,' + (ry - 17) + 'px)';
       requestAnimationFrame(loop);
     })();

@@ -36,7 +36,7 @@ html.gps-cursor-on textarea {
   border-radius: 50%;
   background: var(--blue-glow, #3A8AFF);
   box-shadow: 0 0 8px rgba(30, 107, 255, 0.9);
-  transition: width 0.15s ease, height 0.15s ease;
+  transition: scale 0.15s ease;
 }
 
 .gps-cursor-ring {
@@ -73,8 +73,7 @@ html.gps-cursor-on textarea {
     inset 0 0 10px rgba(30, 107, 255, 0.25);
 }
 .gps-cursor-dot.lock {
-  width: 4px;
-  height: 4px;
+  scale: 0.67;
 }
 
 .gps-cursor-ring.press { scale: 0.85; }
